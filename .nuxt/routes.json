@@ -1,0 +1,142 @@
+[
+  {
+    "name": "dashboard",
+    "path": "/dashboard",
+    "component": "/var/www/html/projects/frontend-boilerplate/pages/dashboard/index.vue",
+    "chunkName": "pages/dashboard/index",
+    "_name": "_2b57f3dd"
+  },
+  {
+    "name": "ems",
+    "path": "/ems",
+    "component": "/var/www/html/projects/frontend-boilerplate/pages/ems/index.vue",
+    "chunkName": "pages/ems/index",
+    "_name": "_3ea21858"
+  },
+  {
+    "name": "leave",
+    "path": "/leave",
+    "component": "/var/www/html/projects/frontend-boilerplate/pages/leave/index.vue",
+    "chunkName": "pages/leave/index",
+    "_name": "_eb52e180"
+  },
+  {
+    "name": "dashboard-v1",
+    "path": "/dashboard/v1",
+    "component": "/var/www/html/projects/frontend-boilerplate/pages/dashboard/v1.vue",
+    "chunkName": "pages/dashboard/v1",
+    "_name": "_704c3200"
+  },
+  {
+    "name": "ems-create",
+    "path": "/ems/create",
+    "component": "/var/www/html/projects/frontend-boilerplate/pages/ems/create.vue",
+    "chunkName": "pages/ems/create",
+    "_name": "_5ce3d16a"
+  },
+  {
+    "name": "ems-system_presets-countries",
+    "path": "/ems/system_presets/countries",
+    "component": "/var/www/html/projects/frontend-boilerplate/pages/ems/system_presets/countries.vue",
+    "chunkName": "pages/ems/system_presets/countries",
+    "_name": "_8ffd4392"
+  },
+  {
+    "name": "ems-system_presets-department_heads",
+    "path": "/ems/system_presets/department_heads",
+    "component": "/var/www/html/projects/frontend-boilerplate/pages/ems/system_presets/department_heads.vue",
+    "chunkName": "pages/ems/system_presets/department_heads",
+    "_name": "_a2e3749a"
+  },
+  {
+    "name": "ems-system_presets-departments",
+    "path": "/ems/system_presets/departments",
+    "component": "/var/www/html/projects/frontend-boilerplate/pages/ems/system_presets/departments.vue",
+    "chunkName": "pages/ems/system_presets/departments",
+    "_name": "_937684b8"
+  },
+  {
+    "name": "ems-system_presets-designition",
+    "path": "/ems/system_presets/designition",
+    "component": "/var/www/html/projects/frontend-boilerplate/pages/ems/system_presets/designition.vue",
+    "chunkName": "pages/ems/system_presets/designition",
+    "_name": "_53a0b342"
+  },
+  {
+    "name": "ems-system_presets-employment_types",
+    "path": "/ems/system_presets/employment_types",
+    "component": "/var/www/html/projects/frontend-boilerplate/pages/ems/system_presets/employment_types.vue",
+    "chunkName": "pages/ems/system_presets/employment_types",
+    "_name": "_793b969a"
+  },
+  {
+    "name": "ems-system_presets-genders",
+    "path": "/ems/system_presets/genders",
+    "component": "/var/www/html/projects/frontend-boilerplate/pages/ems/system_presets/genders.vue",
+    "chunkName": "pages/ems/system_presets/genders",
+    "_name": "_1ae1add6"
+  },
+  {
+    "name": "ems-system_presets-personal_identification_types",
+    "path": "/ems/system_presets/personal_identification_types",
+    "component": "/var/www/html/projects/frontend-boilerplate/pages/ems/system_presets/personal_identification_types.vue",
+    "chunkName": "pages/ems/system_presets/personal_identification_types",
+    "_name": "_2d94e2ec"
+  },
+  {
+    "name": "ems-system_presets-relationship_status",
+    "path": "/ems/system_presets/relationship_status",
+    "component": "/var/www/html/projects/frontend-boilerplate/pages/ems/system_presets/relationship_status.vue",
+    "chunkName": "pages/ems/system_presets/relationship_status",
+    "_name": "_afdab1c8"
+  },
+  {
+    "name": "ems-system_presets-section_heads",
+    "path": "/ems/system_presets/section_heads",
+    "component": "/var/www/html/projects/frontend-boilerplate/pages/ems/system_presets/section_heads.vue",
+    "chunkName": "pages/ems/system_presets/section_heads",
+    "_name": "_e96dc788"
+  },
+  {
+    "name": "ems-system_presets-sections",
+    "path": "/ems/system_presets/sections",
+    "component": "/var/www/html/projects/frontend-boilerplate/pages/ems/system_presets/sections.vue",
+    "chunkName": "pages/ems/system_presets/sections",
+    "_name": "_7cbe357b"
+  },
+  {
+    "name": "iam-auth-account",
+    "path": "/iam/auth/account",
+    "component": "/var/www/html/projects/frontend-boilerplate/pages/iam/auth/account.vue",
+    "chunkName": "pages/iam/auth/account",
+    "_name": "_071f112c"
+  },
+  {
+    "name": "iam-auth-login",
+    "path": "/iam/auth/login",
+    "component": "/var/www/html/projects/frontend-boilerplate/pages/iam/auth/login.vue",
+    "chunkName": "pages/iam/auth/login",
+    "_name": "_9cb83834"
+  },
+  {
+    "name": "ems-update-id",
+    "path": "/ems/update/:id?",
+    "component": "/var/www/html/projects/frontend-boilerplate/pages/ems/update/_id.vue",
+    "chunkName": "pages/ems/update/_id",
+    "_name": "_4a09d4e2"
+  },
+  {
+    "name": "ems-view-id",
+    "path": "/ems/view/:id?",
+    "component": "/var/www/html/projects/frontend-boilerplate/pages/ems/view/_id.vue",
+    "chunkName": "pages/ems/view/_id",
+    "_name": "_24950f84"
+  },
+  {
+    "name": "index",
+    "path": "/",
+    "component": "/var/www/html/projects/frontend-boilerplate/pages/index.vue",
+    "chunkName": "pages/index",
+    "_name": "_72d3ef18"
+  }
+]
