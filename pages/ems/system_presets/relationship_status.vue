@@ -15,29 +15,43 @@
 		<div id="sc-page-content">
 			<ScCard>
 				<ScCardBody>
-					<VueGoodTable
-						:columns="columns"
-						:rows="relationshipStatus"
-						:pagination-options="{ enabled: true }"
-						style-class="uk-table uk-table-divider scutum-vgt"
+					<el-table :data="relationshipStatus"
+						:pagination-props="null"
+						:paging="false"
+						stripe
 					>
-						<template slot="table-row" slot-scope="props">
-							<span v-if="props.column.field === 'relationship_status_id'">
-								{{ props.index + 1 }}
-							</span>
-							<span v-if="props.column.field === 'relationship_status'">
-								{{ props.row.relationship_status }}
-							</span>
-							<span v-if="props.column.field === 'action'">
-								<button class="sc-button sc-button-mini md-bg-orange-400" data-uk-tooltip="View employee">
-									<fa :icon="['fas', 'eye']" class="md-color-white" />	
-								</button>
-								<button class="sc-button sc-button-mini md-bg-green-400" data-uk-tooltip="Edit employee">
-									<fa :icon="['fas', 'edit']" class="md-color-white" />	
-								</button>
-							</span>
-						</template>
-					</VueGoodTable>
+						<el-table-column prop="flow_no"
+							label="#"
+							sortable="custom"
+							type="expand"
+						>
+							<template slot-scope="props">
+								<p>Gender: {{ props.row.gender }}</p>
+							</template>
+						</el-table-column>
+						<el-table-column prop="relationship_status" label="Rtn. Status" sortable="custom">
+						</el-table-column>
+						<el-table-column label="Action">
+							<template slot-scope="scope">
+								<el-button-group>
+									<el-button type="success"
+										class="elbutton"
+										size="mini"
+										uk-tooltip="Edit"
+										@click="handleEditRow(scope.row.relationship_status_id,null)"
+									>
+										<i class="el-icon-edit" />
+									</el-button>
+									<el-button type="danger" size="mini" uk-tooltip="Delete" @click="handleSaveRow(scope.$index)">
+										<i class="el-icon-delete" />
+									</el-button>
+									<el-button type="primary" size="mini" uk-tooltip="View" @click="handleSaveRow(scope.$index)">
+										<i class="el-icon-view" />
+									</el-button>
+								</el-button-group>
+							</template>
+						</el-table-column>
+					</el-table>
 				</ScCardBody>
 			</ScCard>
 			<div id="modal-status" class="uk-flex-middle" uk-modal="bg-close:false">
@@ -59,12 +73,16 @@
 </template>
 
 <script>
-import 'vue-good-table/dist/vue-good-table.css'
+import Vue from 'vue';
+import ElementUI from 'element-ui'
+import 'element-ui/lib/theme-chalk/index.css'
+Vue.use(ElementUI)
+import lang from 'element-ui/lib/locale/lang/en'
+import locale from 'element-ui/lib/locale'
+locale.use(lang)
 import  RelationshipStatusForm from "~/components/serviceComponents/ems/relationship-status-form";
-import { VueGoodTable } from 'vue-good-table'
 export default {
 	components: {
-		VueGoodTable,
 		RelationshipStatusForm
 	},
 	layout: 'employee',
@@ -97,9 +115,17 @@ export default {
 	},
 
 	mounted () {
+		this.getStatus()
 	},
 	methods: {
-		getStatus () {
+		async getStatus () {
+			const headers = {'x-service': 'ems-svc'};
+			await this.$axios.get(`api/relationship-statuses`, { headers })
+				.then(response =>{
+					this.relationshipStatus = response.data.data
+				})
+				.catch(error => {
+				})
 		},
 		addStatus (){
 			

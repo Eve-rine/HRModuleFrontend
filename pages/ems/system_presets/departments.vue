@@ -26,14 +26,11 @@
 							type="expand"
 						>
 							<template slot-scope="props">
-								<p>Department: {{ props.row.department }}</p>
-								<p>Dept. Head: {{ props.row.department_head }}</p>
+								<p>Department: {{ props.row.department_name }}</p>
 								<p>Dept. Abbr: {{ props.row.department_abbreviation }}</p>
 							</template>
 						</el-table-column>
-						<el-table-column prop="department" label="Department" sortable="custom">
-						</el-table-column>
-						<el-table-column prop="department_head" label="Dept. Head" sortable="custom">
+						<el-table-column prop="department_name" label="Department" sortable="custom">
 						</el-table-column>
 						<el-table-column prop="department_abbreviation" label="Dept. Abbr" sortable="custom">
 						</el-table-column>
@@ -123,10 +120,22 @@ export default {
 			]
 		}
 	},
+	mounted (){
+		this.getDepartments()
+	},
 	methods: {
 		addDepartment (){
 	
-		}
+		},
+		async getDepartments () {
+			const headers = {'x-service': 'ems-svc'};
+			await this.$axios.get(`api/departments`, { headers })
+				.then(response =>{
+					this.departments = response.data.data
+				})
+				.catch(error => {
+				})
+		},
 	}
 }
 </script>

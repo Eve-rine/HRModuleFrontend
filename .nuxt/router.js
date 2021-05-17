@@ -6,9 +6,10 @@ import scrollBehavior from './router.scrollBehavior.js'
 
 const _2b57f3dd = () => interopDefault(import('../pages/dashboard/index.vue' /* webpackChunkName: "pages/dashboard/index" */))
 const _3ea21858 = () => interopDefault(import('../pages/ems/index.vue' /* webpackChunkName: "pages/ems/index" */))
-const _eb52e180 = () => interopDefault(import('../pages/leave/index.vue' /* webpackChunkName: "pages/leave/index" */))
+const _6644215b = () => interopDefault(import('../pages/lms/index.vue' /* webpackChunkName: "pages/lms/index" */))
 const _704c3200 = () => interopDefault(import('../pages/dashboard/v1.vue' /* webpackChunkName: "pages/dashboard/v1" */))
 const _5ce3d16a = () => interopDefault(import('../pages/ems/create.vue' /* webpackChunkName: "pages/ems/create" */))
+const _ec17567a = () => interopDefault(import('../pages/lms/create.vue' /* webpackChunkName: "pages/lms/create" */))
 const _8ffd4392 = () => interopDefault(import('../pages/ems/system_presets/countries.vue' /* webpackChunkName: "pages/ems/system_presets/countries" */))
 const _a2e3749a = () => interopDefault(import('../pages/ems/system_presets/department_heads.vue' /* webpackChunkName: "pages/ems/system_presets/department_heads" */))
 const _937684b8 = () => interopDefault(import('../pages/ems/system_presets/departments.vue' /* webpackChunkName: "pages/ems/system_presets/departments" */))
@@ -21,6 +22,18 @@ const _e96dc788 = () => interopDefault(import('../pages/ems/system_presets/secti
 const _7cbe357b = () => interopDefault(import('../pages/ems/system_presets/sections.vue' /* webpackChunkName: "pages/ems/system_presets/sections" */))
 const _071f112c = () => interopDefault(import('../pages/iam/auth/account.vue' /* webpackChunkName: "pages/iam/auth/account" */))
 const _9cb83834 = () => interopDefault(import('../pages/iam/auth/login.vue' /* webpackChunkName: "pages/iam/auth/login" */))
+const _7d42f78d = () => interopDefault(import('../pages/lms/system_presets/holiday_lists/index.vue' /* webpackChunkName: "pages/lms/system_presets/holiday_lists/index" */))
+const _628f861c = () => interopDefault(import('../pages/lms/system_presets/holidays/index.vue' /* webpackChunkName: "pages/lms/system_presets/holidays/index" */))
+const _af87ce60 = () => interopDefault(import('../pages/lms/system_presets/leave_types/index.vue' /* webpackChunkName: "pages/lms/system_presets/leave_types/index" */))
+const _52d044d1 = () => interopDefault(import('../pages/lms/system_presets/holiday_lists/create.vue' /* webpackChunkName: "pages/lms/system_presets/holiday_lists/create" */))
+const _3003ac0c = () => interopDefault(import('../pages/lms/system_presets/holidays/create.vue' /* webpackChunkName: "pages/lms/system_presets/holidays/create" */))
+const _f2096824 = () => interopDefault(import('../pages/lms/system_presets/leave_types/create.vue' /* webpackChunkName: "pages/lms/system_presets/leave_types/create" */))
+const _779f866e = () => interopDefault(import('../pages/lms/system_presets/holiday_lists/update/_id.vue' /* webpackChunkName: "pages/lms/system_presets/holiday_lists/update/_id" */))
+const _1a52ade5 = () => interopDefault(import('../pages/lms/system_presets/holiday_lists/view/_id.vue' /* webpackChunkName: "pages/lms/system_presets/holiday_lists/view/_id" */))
+const _7e978e84 = () => interopDefault(import('../pages/lms/system_presets/holidays/update/_id.vue' /* webpackChunkName: "pages/lms/system_presets/holidays/update/_id" */))
+const _78493260 = () => interopDefault(import('../pages/lms/system_presets/holidays/view/_id.vue' /* webpackChunkName: "pages/lms/system_presets/holidays/view/_id" */))
+const _4f186d66 = () => interopDefault(import('../pages/lms/system_presets/leave_types/update/_id.vue' /* webpackChunkName: "pages/lms/system_presets/leave_types/update/_id" */))
+const _204f3c7c = () => interopDefault(import('../pages/lms/system_presets/leave_types/view/_id.vue' /* webpackChunkName: "pages/lms/system_presets/leave_types/view/_id" */))
 const _4a09d4e2 = () => interopDefault(import('../pages/ems/update/_id.vue' /* webpackChunkName: "pages/ems/update/_id" */))
 const _24950f84 = () => interopDefault(import('../pages/ems/view/_id.vue' /* webpackChunkName: "pages/ems/view/_id" */))
 const _72d3ef18 = () => interopDefault(import('../pages/index.vue' /* webpackChunkName: "pages/index" */))
@@ -45,9 +58,9 @@ export const routerOptions = {
     component: _3ea21858,
     name: "ems"
   }, {
-    path: "/leave",
-    component: _eb52e180,
-    name: "leave"
+    path: "/lms",
+    component: _6644215b,
+    name: "lms"
   }, {
     path: "/dashboard/v1",
     component: _704c3200,
@@ -56,6 +69,10 @@ export const routerOptions = {
     path: "/ems/create",
     component: _5ce3d16a,
     name: "ems-create"
+  }, {
+    path: "/lms/create",
+    component: _ec17567a,
+    name: "lms-create"
   }, {
     path: "/ems/system_presets/countries",
     component: _8ffd4392,
@@ -104,6 +121,54 @@ export const routerOptions = {
     path: "/iam/auth/login",
     component: _9cb83834,
     name: "iam-auth-login"
+  }, {
+    path: "/lms/system_presets/holiday_lists",
+    component: _7d42f78d,
+    name: "lms-system_presets-holiday_lists"
+  }, {
+    path: "/lms/system_presets/holidays",
+    component: _628f861c,
+    name: "lms-system_presets-holidays"
+  }, {
+    path: "/lms/system_presets/leave_types",
+    component: _af87ce60,
+    name: "lms-system_presets-leave_types"
+  }, {
+    path: "/lms/system_presets/holiday_lists/create",
+    component: _52d044d1,
+    name: "lms-system_presets-holiday_lists-create"
+  }, {
+    path: "/lms/system_presets/holidays/create",
+    component: _3003ac0c,
+    name: "lms-system_presets-holidays-create"
+  }, {
+    path: "/lms/system_presets/leave_types/create",
+    component: _f2096824,
+    name: "lms-system_presets-leave_types-create"
+  }, {
+    path: "/lms/system_presets/holiday_lists/update/:id?",
+    component: _779f866e,
+    name: "lms-system_presets-holiday_lists-update-id"
+  }, {
+    path: "/lms/system_presets/holiday_lists/view/:id?",
+    component: _1a52ade5,
+    name: "lms-system_presets-holiday_lists-view-id"
+  }, {
+    path: "/lms/system_presets/holidays/update/:id?",
+    component: _7e978e84,
+    name: "lms-system_presets-holidays-update-id"
+  }, {
+    path: "/lms/system_presets/holidays/view/:id?",
+    component: _78493260,
+    name: "lms-system_presets-holidays-view-id"
+  }, {
+    path: "/lms/system_presets/leave_types/update/:id?",
+    component: _4f186d66,
+    name: "lms-system_presets-leave_types-update-id"
+  }, {
+    path: "/lms/system_presets/leave_types/view/:id?",
+    component: _204f3c7c,
+    name: "lms-system_presets-leave_types-view-id"
   }, {
     path: "/ems/update/:id?",
     component: _4a09d4e2,

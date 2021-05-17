@@ -15,29 +15,43 @@
 		<div id="sc-page-content">
 			<ScCard>
 				<ScCardBody>
-					<VueGoodTable
-						:columns="columns"
-						:rows="genders"
-						:pagination-options="{ enabled: true }"
-						style-class="uk-table uk-table-divider scutum-vgt"
+					<el-table :data="genders"
+						:pagination-props="null"
+						:paging="false"
+						stripe
 					>
-						<template slot="table-row" slot-scope="props">
-							<span v-if="props.column.field === 'gender_id'">
-								{{ props.index + 1 }}
-							</span>
-							<span v-if="props.column.field === 'type'">
-								{{ props.row.type }}
-							</span>
-							<span v-if="props.column.field === 'action'">
-								<button class="sc-button sc-button-mini md-bg-orange-400" data-uk-tooltip="View">
-									<fa :icon="['fas', 'eye']" class="md-color-white" />	
-								</button>
-								<button class="sc-button sc-button-mini md-bg-green-400" data-uk-tooltip="Edit">
-									<fa :icon="['fas', 'edit']" class="md-color-white" />	
-								</button>
-							</span>
-						</template>
-					</VueGoodTable>
+						<el-table-column prop="flow_no"
+							label="#"
+							sortable="custom"
+							type="expand"
+						>
+							<template slot-scope="props">
+								<p>Gender: {{ props.row.gender }}</p>
+							</template>
+						</el-table-column>
+						<el-table-column prop="gender" label="Gender" sortable="custom">
+						</el-table-column>
+						<el-table-column label="Action">
+							<template slot-scope="scope">
+								<el-button-group>
+									<el-button type="success"
+										class="elbutton"
+										size="mini"
+										uk-tooltip="Edit"
+										@click="handleEditRow(scope.row.gender_id)"
+									>
+										<i class="el-icon-edit" />
+									</el-button>
+									<el-button type="danger" size="mini" uk-tooltip="Delete" @click="handleSaveRow(scope.$index)">
+										<i class="el-icon-delete" />
+									</el-button>
+									<el-button type="primary" size="mini" uk-tooltip="View" @click="handleSaveRow(scope.$index)">
+										<i class="el-icon-view" />
+									</el-button>
+								</el-button-group>
+							</template>
+						</el-table-column>
+					</el-table>
 				</ScCardBody>
 			</ScCard>
 			<div id="modal-gender" class="uk-flex-middle" uk-modal="bg-close:false">
@@ -54,18 +68,36 @@
 					</client-only>
 				</div>
 			</div>
+			<div id="modal-view" class="uk-flex-middle" uk-modal="bg-close:false">
+				<div class="uk-modal-dialog uk-width-1-4@l uk-margin-auto uk-modal-body">
+					<button class="uk-modal-close-default" data-uk-close></button>
+					<h2 class="uk-modal-title">
+						Add Gender
+					</h2>
+					<client-only>
+						<GenderForm button-text="Add"
+							:submit-form="addGender"
+							:has-submit-button="true"
+							:get-record="handleEditRow"
+						/>
+					</client-only>
+				</div>
+			</div>
 		</div>
 	</div>
 </template>
 
 <script>
-
-import 'vue-good-table/dist/vue-good-table.css'
-import { VueGoodTable } from 'vue-good-table'
+import Vue from 'vue';
+import ElementUI from 'element-ui'
+import 'element-ui/lib/theme-chalk/index.css'
+Vue.use(ElementUI)
+import lang from 'element-ui/lib/locale/lang/en'
+import locale from 'element-ui/lib/locale'
+locale.use(lang)
 import  GenderForm from "~/components/serviceComponents/ems/gender-form";
 export default {
 	components: {
-		VueGoodTable,
 		GenderForm
 	},
 	layout: 'employee',
@@ -78,23 +110,6 @@ export default {
 		}
 	},
 	computed: {
-		columns () {
-			return [
-				{
-					label: '#',
-					field: 'gender_id',
-				},
-				{
-					label: 'Type',
-					field: 'type',
-				},
-				{
-					label: 'Action',
-					field: 'action',
-				},
-
-			]
-		}
 	},
 
 	mounted () {
@@ -102,25 +117,74 @@ export default {
 	},
 	methods: {
 		async getGenders () {
+			const headers = {'x-service': 'ems-svc'};
+			await this.$axios.get(`api/gender`, { headers })
+				.then(response =>{
+					this.genders = response.data.data
+				})
+				.catch(error => {
+				})
 		},
-	async addGender (gender_details){
-			const headers={
-				headers: {
-					'x-service': 'ems-svc'
-				},
-			}
+		async addGender (gender_details) {
+			let formData = new FormData();
+			formData.append('gender', gender_details.gender);
 			try {
-			await this.$axios.post( 'api/gender', {
-					gender: gender_details.gender,
-	
-				}, headers).then(response=>{
-				// this.$router.push('/ems/system_presets/genders')			
+				await this.$axios.post( 'api/gender',
+					formData,
+					{
+						headers: {
+							'x-service': 'ems-svc'
+						},
+					},
+				).then(response=>{
+					this.$router.push('/lms')
+								
 			
 				}) .catch(function (response) {
+
 				})
-			} catch (err) {  
-	          return
-			      }	
+			}catch{
+
+			}
+				
+		},
+
+		handleSaveRow (index) {
+			this.genders[index].edited = false
+		},
+		// handleEditRow (id, details) {
+		// 	const headers = {'x-service': 'ems-svc'};
+		// 	try {
+		// 		this.$axios.get(
+		// 			`api/gender/${id}`, { headers }
+		// 		)
+		// 			.then(res =>{
+		// 				UIkit.modal('#modal-gender').show()
+		// 				details.gender=res.data.data.gender
+	
+		// 			})
+		// 			.catch(err => {
+
+		// 			})
+		// 	} catch (err) {
+		// 	}
+		// },
+		async handleEditRow (details, id) {
+			const headers = {'x-service': 'ems-svc'};
+			try {
+				await this.$axios.get(
+					`api/gender/${id}`, { headers }
+				)
+					.then(res =>{
+						UIkit.modal('#modal-gender').show()
+						details.gender=res.data.data.gender
+	
+					})
+					.catch(err => {
+
+					})
+			} catch (err) {
+			}
 		},
 
 	}

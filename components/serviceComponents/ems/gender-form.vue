@@ -50,7 +50,7 @@ export default {
 		hasSubmitButton:{
 			type:Boolean,
 			default:false
-		}
+		},
 
 	},
 	data: () => ({
@@ -63,8 +63,13 @@ export default {
 			'title': 'Employee | Gender'
 		}
 	},
-	methods: {
+	computed:{
+	},
+	mounted (){
+		// this.getRecord(this.gender_details)
+	},
 
+	methods: {
 	}
 }
 </script>

@@ -15,29 +15,43 @@
 		<div id="sc-page-content">
 			<ScCard>
 				<ScCardBody>
-					<VueGoodTable
-						:columns="columns"
-						:rows="identity_types"
-						:pagination-options="{ enabled: true }"
-						style-class="uk-table uk-table-divider scutum-vgt"
+					<el-table :data="identity_types"
+						:pagination-props="null"
+						:paging="false"
+						stripe
 					>
-						<template slot="table-row" slot-scope="props">
-							<span v-if="props.column.field === 'personal_identification_id'">
-								{{ props.index + 1 }}
-							</span>
-							<span v-if="props.column.field === 'personal_identification_type'">
-								{{ props.row.personal_identification_type }}
-							</span>
-							<span v-if="props.column.field === 'action'">
-								<button class="sc-button sc-button-mini md-bg-orange-400" data-uk-tooltip="View">
-									<fa :icon="['fas', 'eye']" class="md-color-white" />	
-								</button>
-								<button class="sc-button sc-button-mini md-bg-green-400" data-uk-tooltip="Edit">
-									<fa :icon="['fas', 'edit']" class="md-color-white" />	
-								</button>
-							</span>
-						</template>
-					</VueGoodTable>
+						<el-table-column prop="flow_no"
+							label="#"
+							sortable="custom"
+							type="expand"
+						>
+							<template slot-scope="props">
+								<p>Gender: {{ props.row.gender }}</p>
+							</template>
+						</el-table-column>
+						<el-table-column prop="personal_identification_type" label="ID Type" sortable="custom">
+						</el-table-column>
+						<el-table-column label="Action">
+							<template slot-scope="scope">
+								<el-button-group>
+									<el-button type="success"
+										class="elbutton"
+										size="mini"
+										uk-tooltip="Edit"
+										@click="handleEditRow(scope.row.personal_identification_id,null)"
+									>
+										<i class="el-icon-edit" />
+									</el-button>
+									<el-button type="danger" size="mini" uk-tooltip="Delete" @click="handleSaveRow(scope.$index)">
+										<i class="el-icon-delete" />
+									</el-button>
+									<el-button type="primary" size="mini" uk-tooltip="View" @click="handleSaveRow(scope.$index)">
+										<i class="el-icon-view" />
+									</el-button>
+								</el-button-group>
+							</template>
+						</el-table-column>
+					</el-table>
 				</ScCardBody>
 			</ScCard>
 			<div id="modal-identity_type" class="uk-flex-middle" uk-modal="bg-close:false">
@@ -59,12 +73,16 @@
 </template>
 
 <script>
-import 'vue-good-table/dist/vue-good-table.css'
+import Vue from 'vue';
+import ElementUI from 'element-ui'
+import 'element-ui/lib/theme-chalk/index.css'
+Vue.use(ElementUI)
+import lang from 'element-ui/lib/locale/lang/en'
+import locale from 'element-ui/lib/locale'
+locale.use(lang)
 import  PersonalIdentificationForm from "~/components/serviceComponents/ems/personal-identification-form";
-import { VueGoodTable } from 'vue-good-table'
 export default {
 	components: {
-		VueGoodTable,
 		PersonalIdentificationForm
 	},
 	layout: 'employee',
@@ -77,33 +95,25 @@ export default {
 		}
 	},
 	computed: {
-		columns () {
-			return [
-				{
-					label: '#',
-					field: 'personal_identification_id',
-				},
-				{
-					label: 'Type',
-					field: 'personal_identification_type',
-				},
-				{
-					label: 'Action',
-					field: 'action',
-				},
-			]
-		}
+
 	},
 
 	mounted () {
 		this.getIdentityTypes()
 	},
 	methods: {
-		getIdentityTypes () {
-		},
 		addType (){
 			
-		}
+		},
+		async getIdentityTypes () {
+			const headers = {'x-service': 'ems-svc'};
+			await this.$axios.get(`api/identification-types`, { headers })
+				.then(response =>{
+					this.identity_types = response.data.data
+				})
+				.catch(error => {
+				})
+		},
 
 	}
 }

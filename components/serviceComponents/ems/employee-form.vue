@@ -132,7 +132,7 @@
 									<client-only>
 										<Select2
 											v-model="personal_details.nationality"
-											:options="nationalities"
+											:options="Nationalities"
 											:settings="{ 'width': '100%', 'placeholder': 'Select employee...', allowClear: true }"
 										></Select2>
 									</client-only>
@@ -525,7 +525,7 @@
 									<client-only>
 										<Select2
 											v-model="work_details.department_id"
-											:options="Departments"
+											:options="departments"
 											:settings="{ 'width': '100%', 'placeholder': 'Select a department..', allowClear: true }"
 										></Select2>
 									</client-only>
@@ -552,8 +552,8 @@
 								<div class="uk-form-controls">
 									<client-only>
 										<Select2
-											v-model="work_details.employment_type"
-											:options="EmploymentTypes"
+											v-model="work_details.employment_type_id"
+											:options="employmentTypes"
 											:settings="{ 'width': '100%', 'placeholder': 'Select a type..', allowClear: true }"
 										></Select2>
 									</client-only>
@@ -623,13 +623,13 @@
 								</div>
 							</div>
 						</ScCardHeader>
-						<div v-for="(dependant, index) in dependants" :key="dependant.id" class="sc-padding sc-form-section" :class="{'md-bg-grey-100' : index % 2}">
+						<div v-for="(dependant, index) in dependants" :key="index" class="sc-padding sc-form-section" :class="{'md-bg-grey-100' : index % 2}">
 							<div class="uk-grid-match uk-grid" data-uk-grid>
 								<div class="uk-width-expand@m">
 									<div class="uk-grid-match uk-grid" data-uk-grid>
 										<div class="uk-width-1-4@m">
 											<label>Full Name</label>
-											<ScInput v-model="dependant.dependant_name" name="dependant_name" mode="outline" :error-state="false">													
+											<ScInput v-model="dependants[index].department_name" name="dependant_name" mode="outline" :error-state="false">													
 											</ScInput>
 										</div>
 										<div class="uk-width-1-4@m">
@@ -689,7 +689,7 @@
 							</div>
 						</ScCardHeader>
 				
-						<div v-for="(kin, index) in kins" :key="kin.id" class="sc-padding sc-form-section" :class="{'md-bg-grey-100' : index % 2}">
+						<div v-for="(kin, index) in kins" :key="index" class="sc-padding sc-form-section" :class="{'md-bg-grey-100' : index % 2}">
 							<div class="uk-grid-match uk-grid" data-uk-grid>
 								<div class="uk-width-expand@m">
 									<div class="uk-grid-match uk-grid" data-uk-grid>
@@ -777,7 +777,8 @@ export default {
 		},
 		submitForm: {
 			type: Function,
-			required: true
+			required: false,
+			default:null
 		},
 		getRecord: {
 			type: Function,
@@ -806,7 +807,7 @@ export default {
 		work_details:{
 			department_id: '',
 			section_id:'',
-			employment_type:'',
+			employment_type_id:'',
 			employment_duration:'',
 			employment_date:'',
 			exit_date:'',
@@ -863,7 +864,7 @@ export default {
 			}
 		],
 		status: [],				
-		nationality: [],
+		nationalities: [],
 		genders: [],	
 		identification_types:[],
 		EmploymentTypes:[],
@@ -878,8 +879,22 @@ export default {
 	computed: {
 		relationshipStatus () {
 			return this.status.map(function (obj) {
-				obj.id = obj.id || obj.id;
-				obj.text = obj.text || obj.name;
+				obj.id = obj.id || obj.relationship_status_id;
+				obj.text = obj.text || obj.relationship_status;
+				return obj;
+			});
+		},
+		departments () {
+			return this.Departments.map(function (obj) {
+				obj.id = obj.id || obj.department_id;
+				obj.text = obj.text || obj.department_name;
+				return obj;
+			});
+		},
+		employmentTypes () {
+			return this.EmploymentTypes.map(function (obj) {
+				obj.id = obj.id || obj.employment_type_id;
+				obj.text = obj.text || obj.employment_type;
 				return obj;
 			});
 		},
@@ -890,17 +905,17 @@ export default {
 				return obj;
 			});
 		},
-		nationalities () {
-			return this.nationality.map(function (obj) {
-				obj.id = obj.id || obj.leave_type_id;
-				obj.text = obj.text || obj.leave_type;
+		Nationalities () {
+			return this.nationalities.map(function (obj) {
+				obj.id = obj.id || obj.country_id;
+				obj.text = obj.text || obj.nationality;
 				return obj;
 			});
 		},
 		IdentificationTypes (){
 			return this.identification_types.map(function (obj) {
-				obj.id = obj.id || obj.leave_type_id;
-				obj.text = obj.text || obj.leave_type;
+				obj.id = obj.id || obj.personal_identification_type_id;
+				obj.text = obj.text || obj.personal_identification_type;
 				return obj;
 			});	
 		}
@@ -908,6 +923,11 @@ export default {
 	},
 	mounted (){
 		this.getRecord(this.dependants, this.personal_details, this.work_details, this.contact_details, this.kins)
+		this.getRelationStatus()
+		this.getIdentitificationTypes()
+		this.getCountries()
+		this.getEmploymentTypes()
+		this.getDepartments()
 	},
 	methods: {
 		addDependant () {
@@ -971,6 +991,86 @@ export default {
 		},
 		removeReferee (index) {
 			this.referees.splice(index, 1);	
+		},
+		async getRelationStatus () {
+			const headers = {'x-service': 'ems-svc'};
+			try {
+				await this.$axios.get(
+					`api/relationship-statuses`, { headers }
+				)
+					.then(res =>{
+						this.status=res.data.data
+	
+					})
+					.catch(err => {
+
+					})
+			} catch (err) {
+			}
+		},
+		async getCountries () {
+			const headers = {'x-service': 'ems-svc'};
+			try {
+				await this.$axios.get(
+					`api/countries`, { headers }
+				)
+					.then(res =>{
+						this.nationalities=res.data.data
+	
+					})
+					.catch(err => {
+
+					})
+			} catch (err) {
+			}
+		},
+		async getDepartments () {
+			const headers = {'x-service': 'ems-svc'};
+			try {
+				await this.$axios.get(
+					`api/departments`, { headers }
+				)
+					.then(res =>{
+						this.Departments=res.data.data
+	
+					})
+					.catch(err => {
+
+					})
+			} catch (err) {
+			}
+		},
+		async getIdentitificationTypes () {
+			const headers = {'x-service': 'ems-svc'};
+			try {
+				await this.$axios.get(
+					`api/identification-types`, { headers }
+				)
+					.then(res =>{
+						this.identification_types=res.data.data
+	
+					})
+					.catch(err => {
+						return
+					})
+			} catch (err) {
+			}
+		},
+		async getEmploymentTypes () {
+			const headers = {'x-service': 'ems-svc'};
+			try {
+				await this.$axios.get(
+					`api/employment-types`, { headers }
+				)
+					.then(res =>{
+						this.EmploymentTypes=res.data.data
+	
+					})
+					.catch(err => {
+						return
+					})
+			} catch (err) {
+			}
 		},
 	}
 }

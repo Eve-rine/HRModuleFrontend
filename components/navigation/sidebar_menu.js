@@ -18,7 +18,7 @@ export const menuEntries = [
 		id: uniqueID(),
 		title: "Leave",
 		icon: "mdi mdi-briefcase",
-		page: "/leave"
+		page: "/lms"
 	},
 	
 ];

@@ -4,12 +4,6 @@ const { uniqueID } = scHelpers;
 export const menuEntries = [
 	{
 		id: uniqueID(),
-		title: "Dashboard",
-		icon: "mdi mdi-home-circle",
-		page: "/dashboard"
-	},
-	{
-		id: uniqueID(),
 		title: "Employee profiles",
 		page: "/ems",
 		icon: "mdi mdi-account",
@@ -43,7 +37,7 @@ export const menuEntries = [
 			},
 			{
 				id: uniqueID(),
-				title: "Personal Identification Types",
+				title: "Identification Types",
 				page: "/ems/system_presets/personal_identification_types"
 			},
 			{
@@ -76,11 +70,11 @@ export const menuEntries = [
 				title: "Section Heads",
 				page: "/ems/system_presets/section_heads"
 			},
-			{
-				id: uniqueID(),
-				title: "Employment Types",
-				page: "/ems/system_presets/employment_types"
-			}
+			// {
+			// 	id: uniqueID(),
+			// 	title: "Employment Types",
+			// 	page: "/ems/system_presets/employment_types"
+			// }
 		]
 	},
 	{

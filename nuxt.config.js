@@ -102,10 +102,10 @@ module.exports = {
 		  },
 		},
 		redirect: {
-			login: '/auth/login',
+			login: '/iam/auth/login',
 			home: '/',
-			callback: '/auth/login',
-			logout: '/auth/login'
+			callback: '/iam/auth/login',
+			logout: '/iam/auth/login'
 		  },
 		preserveState: true,
     	watchLoggedIn: true,
@@ -150,6 +150,7 @@ module.exports = {
 		'/api/': {
 			// target: "http://leave.co.ke",
 			target: "http://gateway.supasol.tk",
+			// target:"http://ems.console.supasol.tk/svc",
 			pathRewrite: {
 				'^/api/' : '/'
 			},

@@ -15,38 +15,54 @@
 		<div id="sc-page-content">
 			<ScCard>
 				<ScCardBody>
-					<VueGoodTable
-						:columns="columns"
-						:rows="SectionHeads"
-						:pagination-options="{ enabled: true }"
-						style-class="uk-table uk-table-divider scutum-vgt"
+					<el-table :data="SectionHeads"
+						:pagination-props="null"
+						:paging="false"
+						stripe
 					>
-						<template slot="table-row" slot-scope="props">
-							<span v-if="props.column.field === 'section_head_id'">
-								{{ props.index + 1 }}
-							</span>
-							<span v-if="props.column.field === 'section_id'">
-								{{ props.row.section_id }}
-							</span>
-							<span v-if="props.column.field === 'employee_id'">
-								{{ props.row.employee_id }}
-							</span>
-							<span v-if="props.column.field === 'start_date'">
-								{{ props.row.start_date }}
-							</span>
-							<span v-if="props.column.field === 'end_date'">
-								{{ props.row.end_date }}
-							</span>
-							<span v-if="props.column.field === 'action'">
-								<button class="sc-button sc-button-mini md-bg-orange-400" data-uk-tooltip="View">
-									<fa :icon="['fas', 'eye']" class="md-color-white" />	
-								</button>
-								<button class="sc-button sc-button-mini md-bg-green-400" data-uk-tooltip="Edit">
-									<fa :icon="['fas', 'edit']" class="md-color-white" />	
-								</button>
-							</span>
-						</template>
-					</VueGoodTable>
+						<el-table-column prop="flow_no"
+							label="#"
+							sortable="custom"
+							type="expand"
+						>
+							<template slot-scope="props">
+								<p>Section: {{ props.row.section_id }}</p>
+								<p>Employee: {{ props.row.employee_id }}</p>
+								<p>Start Date: {{ props.row.start_date }}</p>
+								<p>End Date: {{ props.row.end_date }}</p>
+							</template>
+						</el-table-column>
+						<el-table-column prop="section_id" label="Section" sortable="custom">
+						</el-table-column>
+						<el-table-column prop="employee_id" label="Employee" sortable="custom">
+						</el-table-column>
+						<el-table-column prop="start_date" label="Start Date" sortable="custom">
+						</el-table-column>
+						<el-table-column prop="end_date" label="End Date" sortable="custom">
+						</el-table-column>
+						<el-table-column label="Action">
+							<template slot-scope="scope">
+								<el-button-group>
+									<nuxt-link :to="'/ems/view/'+ scope.row.employee_id">
+										<el-button type="success"
+											class="elbutton"
+											size="mini"
+											uk-tooltip="Edit"
+											@click="handleEditRow(scope.$index)"
+										>
+											<i class="el-icon-edit" />
+										</el-button>
+									</nuxt-link>
+									<el-button type="danger" size="mini" uk-tooltip="Delete" @click="handleSaveRow(scope.$index)">
+										<i class="el-icon-delete" />
+									</el-button>
+									<el-button type="primary" size="mini" uk-tooltip="View" @click="handleSaveRow(scope.$index)">
+										<i class="el-icon-view" />
+									</el-button>
+								</el-button-group>
+							</template>
+						</el-table-column>
+					</el-table>
 				</ScCardBody>
 			</ScCard>
 			<div id="modal-department" class="uk-flex-middle" uk-modal="bg-close:false">
@@ -68,12 +84,16 @@
 </template>
 
 <script>
-import 'vue-good-table/dist/vue-good-table.css'
-import { VueGoodTable } from 'vue-good-table'
+import Vue from 'vue';
+import ElementUI from 'element-ui'
+import 'element-ui/lib/theme-chalk/index.css'
+Vue.use(ElementUI)
+import lang from 'element-ui/lib/locale/lang/en'
+import locale from 'element-ui/lib/locale'
+locale.use(lang)
 import  SectionHeadsForm from "~/components/serviceComponents/ems/section-heads-form";
 export default {
 	components: {
-		VueGoodTable,
 		SectionHeadsForm
 	},
 	layout: 'employee',
@@ -87,35 +107,6 @@ export default {
 		}
 	},
 	computed: {
-		columns () {
-			return [
-				{
-					label: '#',
-					field: 'section_head_id',
-				},
-				{
-					label: 'Section',
-					field: 'section_id',
-				},
-				{
-					label: 'Employee Name',
-					field: 'employee_id',
-				},
-				{
-					label: 'Start Date',
-					field: 'start_date',
-				},
-				{
-					label: 'End Date',
-					field: 'end_date',
-				},
-				{
-					label: 'Action',
-					field: 'action',
-				},
-
-			]
-		}
 	},
 	methods: {
 		addSection (){

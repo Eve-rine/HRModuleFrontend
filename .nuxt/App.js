@@ -14,9 +14,10 @@ import '../assets/main.css'
 
 import _6f6c098b from '../layouts/default.vue'
 import _c25dc6b8 from '../layouts/employee.vue'
+import _1a3b0b5c from '../layouts/lms.vue'
 import _866813ca from '../layouts/login_page.vue'
 
-const layouts = { "_default": sanitizeComponent(_6f6c098b),"_employee": sanitizeComponent(_c25dc6b8),"_login_page": sanitizeComponent(_866813ca) }
+const layouts = { "_default": sanitizeComponent(_6f6c098b),"_employee": sanitizeComponent(_c25dc6b8),"_lms": sanitizeComponent(_1a3b0b5c),"_login_page": sanitizeComponent(_866813ca) }
 
 export default {
   render (h, props) {

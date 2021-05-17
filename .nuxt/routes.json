@@ -14,11 +14,11 @@
     "_name": "_3ea21858"
   },
   {
-    "name": "leave",
-    "path": "/leave",
-    "component": "/var/www/html/projects/frontend-boilerplate/pages/leave/index.vue",
-    "chunkName": "pages/leave/index",
-    "_name": "_eb52e180"
+    "name": "lms",
+    "path": "/lms",
+    "component": "/var/www/html/projects/frontend-boilerplate/pages/lms/index.vue",
+    "chunkName": "pages/lms/index",
+    "_name": "_6644215b"
   },
   {
     "name": "dashboard-v1",
@@ -33,6 +33,13 @@
     "component": "/var/www/html/projects/frontend-boilerplate/pages/ems/create.vue",
     "chunkName": "pages/ems/create",
     "_name": "_5ce3d16a"
+  },
+  {
+    "name": "lms-create",
+    "path": "/lms/create",
+    "component": "/var/www/html/projects/frontend-boilerplate/pages/lms/create.vue",
+    "chunkName": "pages/lms/create",
+    "_name": "_ec17567a"
   },
   {
     "name": "ems-system_presets-countries",
@@ -117,6 +124,90 @@
     "component": "/var/www/html/projects/frontend-boilerplate/pages/iam/auth/login.vue",
     "chunkName": "pages/iam/auth/login",
     "_name": "_9cb83834"
+  },
+  {
+    "name": "lms-system_presets-holiday_lists",
+    "path": "/lms/system_presets/holiday_lists",
+    "component": "/var/www/html/projects/frontend-boilerplate/pages/lms/system_presets/holiday_lists/index.vue",
+    "chunkName": "pages/lms/system_presets/holiday_lists/index",
+    "_name": "_7d42f78d"
+  },
+  {
+    "name": "lms-system_presets-holidays",
+    "path": "/lms/system_presets/holidays",
+    "component": "/var/www/html/projects/frontend-boilerplate/pages/lms/system_presets/holidays/index.vue",
+    "chunkName": "pages/lms/system_presets/holidays/index",
+    "_name": "_628f861c"
+  },
+  {
+    "name": "lms-system_presets-leave_types",
+    "path": "/lms/system_presets/leave_types",
+    "component": "/var/www/html/projects/frontend-boilerplate/pages/lms/system_presets/leave_types/index.vue",
+    "chunkName": "pages/lms/system_presets/leave_types/index",
+    "_name": "_af87ce60"
+  },
+  {
+    "name": "lms-system_presets-holiday_lists-create",
+    "path": "/lms/system_presets/holiday_lists/create",
+    "component": "/var/www/html/projects/frontend-boilerplate/pages/lms/system_presets/holiday_lists/create.vue",
+    "chunkName": "pages/lms/system_presets/holiday_lists/create",
+    "_name": "_52d044d1"
+  },
+  {
+    "name": "lms-system_presets-holidays-create",
+    "path": "/lms/system_presets/holidays/create",
+    "component": "/var/www/html/projects/frontend-boilerplate/pages/lms/system_presets/holidays/create.vue",
+    "chunkName": "pages/lms/system_presets/holidays/create",
+    "_name": "_3003ac0c"
+  },
+  {
+    "name": "lms-system_presets-leave_types-create",
+    "path": "/lms/system_presets/leave_types/create",
+    "component": "/var/www/html/projects/frontend-boilerplate/pages/lms/system_presets/leave_types/create.vue",
+    "chunkName": "pages/lms/system_presets/leave_types/create",
+    "_name": "_f2096824"
+  },
+  {
+    "name": "lms-system_presets-holiday_lists-update-id",
+    "path": "/lms/system_presets/holiday_lists/update/:id?",
+    "component": "/var/www/html/projects/frontend-boilerplate/pages/lms/system_presets/holiday_lists/update/_id.vue",
+    "chunkName": "pages/lms/system_presets/holiday_lists/update/_id",
+    "_name": "_779f866e"
+  },
+  {
+    "name": "lms-system_presets-holiday_lists-view-id",
+    "path": "/lms/system_presets/holiday_lists/view/:id?",
+    "component": "/var/www/html/projects/frontend-boilerplate/pages/lms/system_presets/holiday_lists/view/_id.vue",
+    "chunkName": "pages/lms/system_presets/holiday_lists/view/_id",
+    "_name": "_1a52ade5"
+  },
+  {
+    "name": "lms-system_presets-holidays-update-id",
+    "path": "/lms/system_presets/holidays/update/:id?",
+    "component": "/var/www/html/projects/frontend-boilerplate/pages/lms/system_presets/holidays/update/_id.vue",
+    "chunkName": "pages/lms/system_presets/holidays/update/_id",
+    "_name": "_7e978e84"
+  },
+  {
+    "name": "lms-system_presets-holidays-view-id",
+    "path": "/lms/system_presets/holidays/view/:id?",
+    "component": "/var/www/html/projects/frontend-boilerplate/pages/lms/system_presets/holidays/view/_id.vue",
+    "chunkName": "pages/lms/system_presets/holidays/view/_id",
+    "_name": "_78493260"
+  },
+  {
+    "name": "lms-system_presets-leave_types-update-id",
+    "path": "/lms/system_presets/leave_types/update/:id?",
+    "component": "/var/www/html/projects/frontend-boilerplate/pages/lms/system_presets/leave_types/update/_id.vue",
+    "chunkName": "pages/lms/system_presets/leave_types/update/_id",
+    "_name": "_4f186d66"
+  },
+  {
+    "name": "lms-system_presets-leave_types-view-id",
+    "path": "/lms/system_presets/leave_types/view/:id?",
+    "component": "/var/www/html/projects/frontend-boilerplate/pages/lms/system_presets/leave_types/view/_id.vue",
+    "chunkName": "pages/lms/system_presets/leave_types/view/_id",
+    "_name": "_204f3c7c"
   },
   {
     "name": "ems-update-id",

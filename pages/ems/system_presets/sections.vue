@@ -15,32 +15,48 @@
 		<div id="sc-page-content">
 			<ScCard>
 				<ScCardBody>
-					<VueGoodTable
-						:columns="columns"
-						:rows="sections"
-						:pagination-options="{ enabled: true }"
-						style-class="uk-table uk-table-divider scutum-vgt"
+					<el-table :data="departments"
+						:pagination-props="null"
+						:paging="false"
+						stripe
 					>
-						<template slot="table-row" slot-scope="props">
-							<span v-if="props.column.field === 'section_id'">
-								{{ props.index + 1 }}
-							</span>
-							<span v-if="props.column.field === 'department_id'">
-								{{ props.row.department_id }}
-							</span>
-							<span v-if="props.column.field === 'department'">
-								{{ props.row.department }}
-							</span>
-							<span v-if="props.column.field === 'action'">
-								<button class="sc-button sc-button-mini md-bg-orange-400" data-uk-tooltip="View">
-									<fa :icon="['fas', 'eye']" class="md-color-white" />	
-								</button>
-								<button class="sc-button sc-button-mini md-bg-green-400" data-uk-tooltip="Edit">
-									<fa :icon="['fas', 'edit']" class="md-color-white" />	
-								</button>
-							</span>
-						</template>
-					</VueGoodTable>
+						<el-table-column prop="flow_no"
+							label="#"
+							sortable="custom"
+							type="expand"
+						>
+							<template slot-scope="props">
+								<p>Department: {{ props.row.section_name }}</p>
+								<p>Dept. Head: {{ props.row.section_head }}</p>
+							</template>
+						</el-table-column>
+						<el-table-column prop="section_name" label="Section" sortable="custom">
+						</el-table-column>
+						<el-table-column prop="section_head" label="Section Head" sortable="custom">
+						</el-table-column>
+						<el-table-column label="Action">
+							<template slot-scope="scope">
+								<el-button-group>
+									<nuxt-link :to="'/ems/view/'+ scope.row.employee_id">
+										<el-button type="success"
+											class="elbutton"
+											size="mini"
+											uk-tooltip="Edit"
+											@click="handleEditRow(scope.$index)"
+										>
+											<i class="el-icon-edit" />
+										</el-button>
+									</nuxt-link>
+									<el-button type="danger" size="mini" uk-tooltip="Delete" @click="handleSaveRow(scope.$index)">
+										<i class="el-icon-delete" />
+									</el-button>
+									<el-button type="primary" size="mini" uk-tooltip="View" @click="handleSaveRow(scope.$index)">
+										<i class="el-icon-view" />
+									</el-button>
+								</el-button-group>
+							</template>
+						</el-table-column>
+					</el-table>
 				</ScCardBody>
 			</ScCard>
 			<div id="modal-section" class="uk-flex-middle" uk-modal="bg-close:false">
@@ -61,13 +77,16 @@
 	</div>
 </template>
 <script>
-
+import Vue from 'vue';
+import ElementUI from 'element-ui'
+import 'element-ui/lib/theme-chalk/index.css'
+Vue.use(ElementUI)
+import lang from 'element-ui/lib/locale/lang/en'
+import locale from 'element-ui/lib/locale'
+locale.use(lang)
 import  SectionsForm from "~/components/serviceComponents/ems/sections-form";
-import 'vue-good-table/dist/vue-good-table.css'
-import { VueGoodTable } from 'vue-good-table'
 export default {
 	components: {
-		VueGoodTable,
 		SectionsForm
 	},
 	layout: 'employee',
@@ -81,39 +100,21 @@ export default {
 		}
 	},
 	computed: {
-		columns () {
-			return [
-				{
-					label: '#',
-					field: 'department_id',
-				},
-				{
-					label: 'Department',
-					field: 'department_id',
-				},
-				{
-					label: 'Section',
-					field: 'section_name',
-				},
-				{
-					label: 'Section Head',
-					field: 'section_head',
-				},
-				{
-					label: 'Action',
-					field: 'action',
-				},
-
-			]
-		}
 	},
 
 	mounted () {
+		this.getSections()
 	},
 	methods: {
-		getSections () {
+		async getSections () {
+			const headers = {'x-service': 'ems-svc'};
+			await this.$axios.get(`api/sections`, { headers })
+				.then(response =>{
+					this.sections = response.data.data
+				})
+				.catch(error => {
+				})
 		},
-		addSection (){}
 	}
 }
 </script>

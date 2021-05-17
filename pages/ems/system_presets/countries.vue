@@ -15,7 +15,7 @@
 		<div id="sc-page-content">
 			<ScCard>
 				<ScCardBody>
-					<el-table :data="nationalities"
+					<el-table :data="countries"
 						:pagination-props="null"
 						:paging="false"
 						stripe
@@ -34,7 +34,7 @@
 								<p>Section: {{ props.row.section }}</p>
 							</template>
 						</el-table-column>
-						<el-table-column prop="country-code" label="Country Code" sortable="custom">
+						<el-table-column prop="country_code" label="Country Code" sortable="custom">
 						</el-table-column>
 						<el-table-column prop="country" label="Country" sortable="custom">
 						</el-table-column>
@@ -91,7 +91,7 @@ export default {
 	},
 	layout: 'employee',
 	data: () => ({
-		nationalities:[],	
+		countries:[],	
 	}),
 	head () {
 		return {
@@ -129,11 +129,18 @@ export default {
 		this.getCountries()
 	},
 	methods: {
-		getCountries () {
-		},
 		addCountries (){
 			
-		}
+		},
+		async getCountries () {
+			const headers = {'x-service': 'ems-svc'};
+			await this.$axios.get(`api/countries`, { headers })
+				.then(response =>{
+					this.countries = response.data.data
+				})
+				.catch(error => {
+				})
+		},
 
 	}
 }

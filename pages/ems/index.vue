@@ -35,7 +35,7 @@
 						>
 							<template slot-scope="props">
 								<p>	Staff No: {{ props.row.employment_data.employee_number }}</p>
-								<p>Name: {{ props.row.first_name }}</p>
+								<p>Name:{{ formatName(props.row.first_name,props.row.last_name) }}</p>
 								<p>Gender: {{ props.row.gender_id }}</p>
 								<p>Mobile Number: {{ props.row.primary_mobile_number }}</p>
 								<p>Email: {{ props.row.primary_email }}</p>
@@ -45,6 +45,9 @@
 						<el-table-column prop="employment_data.employee_number" label="Staff No." sortable="custom">
 						</el-table-column>
 						<el-table-column prop="first_name" label="Name" sortable="custom">
+							<template slot-scope="props">
+								{{ formatName(props.row.first_name,props.row.last_name) }}
+							</template>
 						</el-table-column>
 						<el-table-column prop="gender_id" label="Gender" sortable="custom">
 						</el-table-column>
@@ -59,7 +62,7 @@
 								<el-button-group>
 									<nuxt-link :to="'/ems/view/'+ scope.row.employee_id">
 										<el-button type="success"
-											class="elbutton"
+						
 											size="mini"
 											uk-tooltip="Edit"
 											@click="handleEditRow(scope.$index)"
@@ -281,7 +284,15 @@ export default {
 		},
 		handleSaveRow (index) {
 			this.employees[index].edited = false
-		}
+		},
+
+		formatName (name1, name2){
+			var nam1=name1
+			var nam2=name2
+			var whitespace=""
+			// return nam1.concat(whitespace, nam2)
+			return nam1+""+nam2
+		},
 	}
 }
 </script>

@@ -16,10 +16,10 @@ export default function (ctx, inject) {
   "fullPathRedirect": true,
   "watchLoggedIn": true,
   "redirect": {
-    "login": "/auth/login",
-    "logout": "/auth/login",
+    "login": "/iam/auth/login",
+    "logout": "/iam/auth/login",
     "home": "/",
-    "callback": "/auth/login"
+    "callback": "/iam/auth/login"
   },
   "vuex": {
     "namespace": "auth"
