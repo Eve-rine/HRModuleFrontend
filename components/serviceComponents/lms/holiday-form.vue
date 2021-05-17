@@ -28,10 +28,10 @@
 								</div>
 							</div>
 							<div class="uk-width-1-2@m">
-								<label class="uk-form-label">Holiday Date Decription</label>
+								<label class="uk-form-label">Holiday Date Type</label>
 								<client-only>
 									<Select2
-										v-model="holiday_details.holiday_date_description"
+										v-model="holiday_details.holiday_date_type"
 										:options="holiday_dates"
 										:settings="{ 'width': '100%', 'minimumResultsForSearch': -1, 'closeOnSelect': false }"
 									></Select2>
@@ -117,11 +117,11 @@ export default {
 		holiday_details:{
 			holiday_name: '',
 			holiday_date:'',
-			holiday_date_description:'',
+			holiday_date_type:'',
 			holiday_type: '',		
 		},
 		holiday_type: [],
-		holiday_date_description: [],
+		holiday_date_type: [],
 	}),
  
 
@@ -139,7 +139,7 @@ export default {
 			});
 		},
 		holiday_dates () {
-			return this.holiday_date_description.map(function (obj) {
+			return this.holiday_date_type.map(function (obj) {
 				obj.id = obj.id || obj.id;
 				obj.text = obj.text || obj.text;
 				return obj;
