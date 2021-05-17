@@ -113,7 +113,6 @@ export default {
 
 	},
 	data: () => ({
-		message:'',
 		holiday_details:{
 			holiday_name: '',
 			holiday_date:'',

@@ -116,11 +116,8 @@ export default {
 	},
 	layout: 'employee',
 	data: () => ({
-		 edited: false,
-		 currentPage:1,
 		searchTerm:'',
-		 page: 1,
-		per_page: 10,
+		employees:[]
 		
 	}),
 	head () {
