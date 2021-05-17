@@ -117,13 +117,13 @@ export default {
 		}
 	},
     	computed: {
-		// HolidayNames () {
-		// 	return this.holidays.map(function (obj) {
-		// 		obj.id = obj.holiday_id || obj.holiday_name;
-		// 		obj.text = obj.holiday_name || obj.holiday_name;
-		// 		return obj;
-		// 	});
-		// },
+		HolidayNames () {
+			return this.holidays.map(function (obj) {
+				obj.id = obj.holiday_id || obj.holiday_name;
+				obj.text = obj.holiday_name || obj.holiday_name;
+				return obj;
+			});
+		},
 	},
 	mounted (){
 		this.getHolidays()
@@ -131,18 +131,6 @@ export default {
 	},
 	methods: {
 		async getHolidays (){
-			try {
-				await this.$axios.get(
-					'leave-svc/v1/holidays/select'
-				)
-					.then(res =>{
-						this.holidays= res.data
-					})
-					.catch(err => {
-						this.errors=error.response.data.errors			           
-					})
-			} catch (err) {
-			}
 		},
 	}
 }
