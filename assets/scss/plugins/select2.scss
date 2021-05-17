@@ -128,12 +128,12 @@
 }
 
 .select2-container {
-	z-index: $z-index-header - 100;
+	// z-index: $z-index-header - 100;
 	body.uk-modal-page & {
-		z-index: $z-index-modal + 100;
+		// z-index: $z-index-modal + 100;
 	}
 	@include respond-below('medium') {
-		z-index: $z-index-sidebar - 100;
+		// z-index: $z-index-sidebar - 100;
 	}
 	&--open,
 	&--focus {}
@@ -190,6 +190,6 @@
 
 .uk-modal-page {
 	.select2-container {
-		z-index: $z-index-modal + 100;
+		// z-index: $z-index-modal + 100;
 	}
 }
