@@ -8,7 +8,7 @@
 					</h1>
 				</div>
 				<div class="sc-actions uk-margin-right uk-margin-small-top">
-					<nuxt-link :to="'/lms/system_presets/holiday/create'" class="sc-fab sc-fab-small sc-fab-text sc-fab-primary">
+					<nuxt-link :to="'/lms/system_presets/holidays/create'" class="sc-fab sc-fab-small sc-fab-text sc-fab-primary">
 						<i class="mdi mdi-plus"></i>Add Holiday
 					</nuxt-link>
 				</div>
