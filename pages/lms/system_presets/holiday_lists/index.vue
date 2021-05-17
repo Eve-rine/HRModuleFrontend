@@ -17,7 +17,7 @@
 		<div id="sc-page-content">
 			<ScCard>
 				<ScCardBody>
-					<form class="uk-search uk-search-default uk-width-1-1">
+					<!-- <form class="uk-search uk-search-default uk-width-1-1">
 						<span uk-search-icon></span>
 						<input v-model="searchTerm"
 							class="uk-search-input"
@@ -25,7 +25,7 @@
 							placeholder="Search Leave Types ..."
 							@keypress.enter.prevent="SearchHolidayList"
 						>
-					</form>
+					</form> -->
 					<form class="uk-search" data-uk-search uk-search-default>
 						<input class="uk-search-field" type="search">
 						<span uk-search-icon></span>
