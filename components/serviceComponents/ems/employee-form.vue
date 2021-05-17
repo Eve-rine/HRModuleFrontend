@@ -9,7 +9,7 @@
 		</div>
 		<div id="sc-page-content">
 			<div class="sc-fab-page-wrapper">
-				<nuxt-link :to="'/employee'" data-uk-tooltip="Back">
+				<nuxt-link :to="'/ems'" data-uk-tooltip="Back">
 					<a href="javascript:void(0)" class="sc-fab sc-fab-medium sc-fab-primary">
 						<i class="mdi mdi-arrow-left"></i>
 					</a>

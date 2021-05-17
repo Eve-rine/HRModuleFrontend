@@ -19,15 +19,11 @@
 							@keypress.enter.prevent="SearchEmployee"
 						>
 					</form> -->
-					<!-- <datatable :columns="columns" :data="employees"></datatable>
-					<datatable-pager v-model="page" type="abbreviated" :per-page="per_page"></datatable-pager> -->
-					<!-- <data-table v-bind="bindings" /> -->
 					<el-table :data="employees"
 						:pagination-props="null"
 						:paging="false"
 						stripe
 					>
-						<!-- <span slot="pagination" style="color: red">I am slot</span> -->
 						<el-table-column prop="flow_no"
 							label="#"
 							sortable="custom"
@@ -117,83 +113,11 @@ import 'vue-good-table/dist/vue-good-table.css'
 
 export default {
 	components: {
-		// VueGoodTable,
-		//  DatatableFactory
-		// 		VuejsDatatableFactory
-		// Datatables
-
 	},
 	layout: 'employee',
 	data: () => ({
 		 edited: false,
 		 currentPage:1,
-		employees:[
-			// {
-			// 	"staff_number": "4",
-			// 	"first_name": "Cedric Kelly",
-			// 	"gender": "Male",
-			// 	"mobile_number": "+254708331531",
-			// 	"email_address": "cedrickelly@gmail.com",
-			// 	"section": "ICT ",	
-			// 	"edited":false
-			// },
-			// {
-			// 	"staff_number": "4",
-			// 	"first_name": "Cedric Kelly",
-			// 	"gender": "Male",
-			// 	"mobile_number": "+254708331531",
-			// 	"email_address": "cedrickelly@gmail.com",
-			// 	"section": "ICT ",	
-			// },		{
-			// 	"staff_number": "4",
-			// 	"first_name": "Cedric Kelly",
-			// 	"gender": "Male",
-			// 	"mobile_number": "+254708331531",
-			// 	"email_address": "cedrickelly@gmail.com",
-			// 	"section": "ICT ",	
-			// },
-			// {
-			// 	"staff_number": "4",
-			// 	"first_name": "Cedric Kelly",
-			// 	"gender": "Male",
-			// 	"mobile_number": "+254708331531",
-			// 	"email_address": "cedrickelly@gmail.com",
-			// 	"section": "ICT ",	
-			// },
-			// {
-			// 	"staff_number": "4",
-			// 	"first_name": "Cedric Kelly",
-			// 	"gender": "Male",
-			// 	"mobile_number": "+254708331531",
-			// 	"email_address": "cedrickelly@gmail.com",
-			// 	"section": "ICT ",	
-			// },
-			// {
-			// 	"staff_number": "4",
-			// 	"first_name": "Cedric Kelly",
-			// 	"gender": "Male",
-			// 	"mobile_number": "+254708331531",
-			// 	"email_address": "cedrickelly@gmail.com",
-			// 	"section": "ICT ",	
-			// },
-			// {
-			// 	"staff_number": "4",
-			// 	"first_name": "Cedric Kelly",
-			// 	"gender": "Male",
-			// 	"mobile_number": "+254708331531",
-			// 	"email_address": "cedrickelly@gmail.com",
-			// 	"section": "ICT ",	
-			// },
-			// {
-			// 	"staff_number": "4",
-			// 	"first_name": "Cedric Kelly",
-			// 	"gender": "Male",
-			// 	"mobile_number": "+254708331531",
-			// 	"email_address": "cedrickelly@gmail.com",
-			// 	"section": "ICT ",	
-			// },
-
-		],
 		searchTerm:'',
 		 page: 1,
 		per_page: 10,
@@ -205,54 +129,6 @@ export default {
 		}
 	},
 	    computed: {
-		bindings () {
-			return {
-				columns: [
-					{
-						key: '#',
-						title: 'employee_id',
-					},
-					{
-						key: 'Staff No.',
-						title: 'staff_number',
-					},
-					{
-						key: 'Name',
-						title: 'first_name',
-					},
-					{
-						key: 'Gender',
-						title: 'gender',
-					},
-					{
-						key: 'Mobile',
-						title: 'mobile_number',
-					},
-					{
-						key: 'Email',
-						title: 'email_address',
-					},
-	        	{
-						key: 'Section',
-						title: 'section',
-					},
-					{
-						key: 'Action',
-						title: 'action',
-					},
-					{
-						key: "phone",
-						sortable: false,
-						searchable: false,
-						/* this will make this column appear to the right of the table
-            since its index is greater than others*/
-						index: 100,
-					}, 
-				],
-				data: [/*the data*/]
-				/* other props...*/
-			}
-		}
 	},
 	mounted () {
 		this.getEmployees()
