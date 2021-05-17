@@ -130,7 +130,6 @@ export default {
 	},
 	mounted () {
 		this.getLeave()
-		this.approvedLeave()
 	},
 	methods: {
 		SearchLeave () {
