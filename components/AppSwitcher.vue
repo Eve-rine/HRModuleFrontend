@@ -3,7 +3,7 @@
 		<a id="sc-style-switcher-toggle" href="javascript:void(0)" class="sc-sSw-toggle" @click.stop="sSwitchActive = !sSwitchActive">
 			<fa :icon="['fas', 'th']" class="md-color-white fa-sm" />
 		</a>
-		<div class="uk-panel-scrollable">
+		<div class="uk -panel uk-panel-scrollable">
 			<ul class="uk-navbar-nav">
 				<li style="width:200px">
 					<div>

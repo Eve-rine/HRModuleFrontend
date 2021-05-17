@@ -27,7 +27,7 @@
 						>
 					</form> -->
 					<form class="uk-search" data-uk-search uk-search-default>
-						<input class="uk-search-field" type="search" placeholder="Search">
+						<input class="uk-search-field" type="search">
 						<span uk-search-icon></span>
 					</form>
 					<el-table :data="HolidayList"
