@@ -17,16 +17,6 @@ export default {
 	layout:'lms',
 	methods:{
 		addHoliday (holiday_details) {
-            	this.$axios.post('leave-svc/v1/holiday-lists/create', holiday_details)
-				.then((response) => {
-					this.$router.push('/holiday-lists')
-					this.message = response.data.message
-			
-				})
-				.catch(error => {
-					this.errors=error.response.data.errors
-						
-				})
 		},
 	 getHoliday (holidayUpdate) {
 		}

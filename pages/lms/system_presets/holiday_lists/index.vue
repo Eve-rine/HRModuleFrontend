@@ -17,7 +17,7 @@
 		<div id="sc-page-content">
 			<ScCard>
 				<ScCardBody>
-					<!-- <form class="uk-search uk-search-default uk-width-1-1">
+					<form class="uk-search uk-search-default uk-width-1-1">
 						<span uk-search-icon></span>
 						<input v-model="searchTerm"
 							class="uk-search-input"
@@ -25,7 +25,7 @@
 							placeholder="Search Leave Types ..."
 							@keypress.enter.prevent="SearchHolidayList"
 						>
-					</form> -->
+					</form>
 					<form class="uk-search" data-uk-search uk-search-default>
 						<input class="uk-search-field" type="search">
 						<span uk-search-icon></span>
@@ -104,61 +104,14 @@ export default {
 		}
 	},
 	computed: {
-		columns () {
-			return [
-				{
-					label: '#',
-					field: 'holiday_list_id',
-				},
-				{
-					label: 'Holiday Name',
-					field: 'holiday_id',
-				},
-				{
-					label: 'Holiday Date',
-					field: 'holiday_date',
-				},
-				{
-					label: 'Holiday Description',
-					field: 'holiday_description',
-				},
-				{
-					label: 'Action',
-					field: 'action',
-				},
-			]
-		}
 	},
 	mounted () {
 		this.getHolidayList()
 	},
 	methods: {
 		SearchHolidayList () {
-			this.$axios.get(
-				`leave-svc/v1/holiday-lists/holiday-lists?HolidayListsSearch=${this.searchTerm}`					
-			)
-				.then(response =>{
-					this.HolidayList = response.data.data.dataModels
-				}).catch(error => {
-					this.errorMessage = error.response.data.message
-						   
-				})
 		},
 		async getHolidayList () {
-			try {
-				await this.$axios.get(
-					'leave-svc/v1/holiday-lists/holiday-lists'
-				)
-					.then(response =>{
-						this.HolidayList = response.data.data.dataModels
-					})
-					.catch(error => {
-						this.errorMessage = error.response.data.message
-						
-					})
-			} catch (error) {
-			
-			}
 		},
 	}
 }

@@ -100,35 +100,6 @@ export default {
 		}
 	},
 	computed: {
-		columns () {
-			return [
-				{
-					label: '#',
-					field: 'department_head_id',
-				},
-				{
-					label: 'Department',
-					field: 'department_id',
-				},
-				{
-					label: 'Employee Name',
-					field: 'employee_id',
-				},
-				{
-					label: 'Start Date',
-					field: 'start_date',
-				},
-				{
-					label: 'End Date',
-					field: 'end_date',
-				},
-				{
-					label: 'Action',
-					field: 'action',
-				},
-
-			]
-		}
 	},
 	methods: {
 		addDepartment (){

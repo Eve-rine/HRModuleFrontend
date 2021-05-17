@@ -109,7 +109,6 @@ import locale from 'element-ui/lib/locale'
 locale.use(lang)
 export default {
 	components: {
-
 	},
 	layout:'lms',
 	
@@ -122,118 +121,22 @@ export default {
 	}),
 	head () {
 		return {
-			'title': 'Leave | leave'
+			'title': 'LMS | Applications'
 		}
 	},
 	computed: {
-
-		    page () {
-			return this.perPage;
-		},
-		columns () {
-			return [
-				{
-					label: '#',
-					field: 'leave_id',
-				},
-				{
-					label: 'Employee',
-					field: 'employee_id',
-				},
-				{
-					label: 'Leave Type',
-					field: 'leave_type_id',
-				},
-				{
-					label: 'Number Of Days',
-					field: 'days_applied',
-				},
-				{
-					label: 'Leave Balance',
-					field: 'new_balance',
-				},
-				{
-					label: 'Start Date',
-					field: 'start_date',
-				},
-            	{
-					label: 'End Date',
-					field: 'end_date',
-				},
-				{
-					label: 'Action',
-					field: 'action',
-				},
-			]
-		}
 	},
 	  watch: {
-		"approvedButton": function () {
-			this.determinePageProgressIndicator();
-			
-		}
 	},
 	mounted () {
-		// this.getLeave()
-		// this.determinePageProgressIndicator();
-		// this.approvedLeave()
+		this.getLeave()
+		this.approvedLeave()
 	},
 	methods: {
 		SearchLeave () {
-			this.$axios.get(
-				`leave-svc/v1/leave/leaves?LeaveSearch=${this.searchTerm}`					
-			)
-				.then(res =>{
-					this.leave = res.data.data.dataModels
-				})
-		},
-		    determinePageProgressIndicator () {
-			this.approvedButton = this.declinedButton;
 		},
 		async getLeave () {
-			let perPage=this.perPage
-			try {
-				
-				await this.$axios.get(
-					`leave-svc/v1/leave/leaves?pageSize=${perPage}&page=${this.currentPage}`
-				)
-					.then(response =>{
-						this.leave = response.data.data.dataModels
-						this.perPage=JSON.parse(response.data.data.pageSize)
-						this.pages=response.data.data.pages
-						this.currentPage=1	
-						this.titleText="Pending Leaves"
-					})
-					.catch(error => {
-						this.errorMessage = error.response.data.message
-
-					})
-			} catch (error) {
-
-			}
 		},
-		async	perPageChanged (perPage) {
-			try {
-				await this.$axios.get(
-					
-					`/leave-svc/v1/leave/leaves?pageSize=${perPage}`
-				)
-					.then(response =>{
-						this.leave = response.data.data.dataModels
-						this.perPage=JSON.parse(response.data.data.pageSize)
-						this.pages=response.data.data.pages
-						this.currentPage=1		
-					
-					})
-					.catch(error => {				
-						this.snackText = JSON.stringify(error.response.data.message)
-		        
-					})
-			} catch (error) {
-
-			}
-		},
-
 	}
 }
 </script>

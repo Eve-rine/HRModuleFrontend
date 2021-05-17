@@ -96,30 +96,6 @@ export default {
 			'title': 'Employee | EmploymentTypes'
 		}
 	},
-	computed: {
-		columns () {
-			return [
-				{
-					label: '#',
-					field: 'employment_type_id',
-				},
-				{
-					label: 'Employment Type',
-					field: 'employment_type',
-				},
-				{
-					label: 'Working Hours',
-					field: 'working_hours',
-				},
-				{
-					label: 'Action',
-					field: 'action',
-				},
-
-			]
-		}
-	},
-
 	mounted () {
 		this.getGenders()
 	},

@@ -102,63 +102,14 @@ export default {
 		}
 	},
 	computed: {
-		columns () {
-			return [
-				{
-					label: '#',
-					field: 'leave_type_id',
-				},
-				{
-					label: 'Leave Type',
-					field: 'leave_type',
-				},
-				{
-					label: 'Number Of Days',
-					field: 'number_of_days',
-				},
-				{
-					label: 'Max Roll Over',
-					field: 'maximum_roll_over',
-				},
-            	{
-					label: 'Gender',
-					field: 'gender',
-				},
-				{
-					label: 'Action',
-					field: 'action',
-				},
-			]
-		}
 	},
 	mounted () {
 		this.getLeaveTypes()
 	},
 	methods: {
 		SearchLeaveTypes () {
-			this.$axios.get(
-				`leave-svc/v1/leave-types/leave-types?LeaveTypesSearch=${this.searchTerm}`					
-			)
-				.then(response =>{
-					this.leaveTypes = response.data.data.dataModels
-				}).catch(error => {
-					
-				})
 		},
 		async getLeaveTypes () {
-			try {
-				await this.$axios.get(
-					'leave-svc/v1/leave-types/leave-types'
-				)
-					.then(response =>{
-						this.leaveTypes = response.data.data.dataModels
-					})
-					.catch(error => {
-				
-					})
-			} catch (error) {
-				showNotification(error, false, 'danger')
-			}
 		},
 	}
 }

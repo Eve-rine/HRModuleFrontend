@@ -95,23 +95,6 @@ export default {
 		}
 	},
 	computed: {
-		columns () {
-			return [
-				{
-					label: '#',
-					field: 'relationship_status_id',
-				},
-				{
-					label: 'Relationship Status',
-					field: 'relationship_status',
-				},
-				{
-					label: 'Action',
-					field: 'action',
-				},
-
-			]
-		}
 	},
 
 	mounted () {

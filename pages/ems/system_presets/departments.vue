@@ -94,31 +94,6 @@ export default {
 		}
 	},
 	computed: {
-		columns () {
-			return [
-				{
-					label: '#',
-					field: 'department',
-				},
-				{
-					label: 'Department',
-					field: 'department',
-				},
-				{
-					label: 'Dept. Abbr',
-					field: 'department_abbreviation',
-				},
-				{
-					label: 'Dept. Head',
-					field: 'department_head',
-				},
-				{
-					label: 'Action',
-					field: 'action',
-				},
-
-			]
-		}
 	},
 	mounted (){
 		this.getDepartments()

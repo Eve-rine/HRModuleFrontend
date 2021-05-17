@@ -99,66 +99,18 @@ export default {
 	}),
 	head () {
 		return {
-			'title': 'Leave | Holidays'
+			'title': 'LMS | Holidays'
 		}
 	},
 	computed: {
-		columns () {
-			return [
-				{
-					label: '#',
-					field: 'holidayId',
-				},
-				{
-					label: 'Holiday Name',
-					field: 'holiday_name',
-				},
-				{
-					label: 'Holiday Date',
-					field: 'holiday_date',
-				},
-				{
-					label: 'Holiday Type',
-					field: 'holiday_type',
-				},
-				{
-					label: 'Holiday Date Description',
-					field: 'holiday_date_description',
-				},
-				{
-					label: 'Action',
-					field: 'action',
-				},
-			]
-		}
 	},
 	mounted () {
 		this.getHolidays()
 	},
 	methods: {
 		SearchHolidays () {
-			this.$axios.get(
-				`leave-svc/v1/holidays/holidays?HolidaysSearch=${this.searchTerm}`						
-			)
-				.then(response =>{
-					this.holidays = response.data.data.dataModels
-				})
 		},
 		async getHolidays () {
-			try {
-				await this.$axios.get(
-					'leave-svc/v1/holidays/holidays'
-				)
-					.then(response =>{
-						this.holidays = response.data.data.dataModels
-					})
-					.catch(error => {
-
-
-					})
-			} catch (error) {
-
-			}
 		},
 	}
 }

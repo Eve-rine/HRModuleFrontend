@@ -99,30 +99,6 @@ export default {
 		}
 	},
 	computed: {
-		columns () {
-			return [
-				{
-					label: '#',
-					field: 'nationality_id',
-				},
-				{
-					label: 'Country Code',
-					field: 'country_code',
-				},
-				{
-					label: 'Country',
-					field: 'country',
-				},
-				{
-					label: 'Nationality',
-					field: 'nationality',
-				},
-				{
-					label: 'Action',
-					field: 'action',
-				},
-			]
-		}
 	},
 
 	mounted () {

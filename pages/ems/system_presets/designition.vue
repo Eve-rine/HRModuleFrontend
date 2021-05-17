@@ -107,30 +107,6 @@ export default {
 			'title': 'Employee | Designitions'
 		}
 	},
-	computed: {
-		columns () {
-			return [
-				{
-					label: '#',
-					field: 'department_id',
-				},
-				{
-					label: 'Department',
-					field: 'department_id',
-				},
-				{
-					label: 'Designition',
-					field: 'designition',
-				},
-				{
-					label: 'Action',
-					field: 'action',
-				},
-
-			]
-		}
-	},
-
 	mounted () {
 		this.getDesignitions()
 	},

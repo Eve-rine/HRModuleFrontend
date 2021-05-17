@@ -17,7 +17,7 @@ export default function ({$axios, store}){
 		return response;
 	});
 	// Add a response interceptor
-	const resInterceptor = $axios.interceptors.response.use(function (response) {
+	const resInterceptor = axios.interceptors.response.use(function (response) {
 	// Do something with response data like console.log, change header, or as we did here just added a conditional behaviour, to change the route or pop up an alert box, based on the reponse status  
 		if (response.status === 200 || response.status===201) {
 	  router.replace('homepage')
@@ -30,5 +30,5 @@ export default function ({$axios, store}){
 	// Do something with response error
 		return Promise.reject(error);
 	});
-	$axios.interceptors.request.eject(resInterceptor);
+	axios.interceptors.request.eject(resInterceptor);
 }
