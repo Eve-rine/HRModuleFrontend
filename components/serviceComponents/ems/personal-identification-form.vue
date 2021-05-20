@@ -7,8 +7,13 @@
 						Personal Identification Type
 					</label>
 					<div class="uk-form-controls">
-						<ScInput v-model="identification_details.personal_identification_type" name="personal_identification_type" mode="outline" :error-state="false">													
+						<ScInput v-model="identification_details.personal_identification_type" name="personal_identification_type" mode="outline" :error-state="errors.personal_identification_type ? true : false">													
 						</ScInput>
+						<ul class="sc-vue-errors">
+							<li v-if="errors.personal_identification_type">
+								{{ errors.personal_identification_type[0] }}
+							</li>
+						</ul>
 					</div>
 				</div>
 			</div>

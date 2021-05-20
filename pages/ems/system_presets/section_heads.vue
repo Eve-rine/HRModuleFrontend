@@ -15,6 +15,19 @@
 		<div id="sc-page-content">
 			<ScCard>
 				<ScCardBody>
+					<div class="uk-flex uk-flex-right">
+						<form class="uk-flex">
+							<input name="search"
+								type="search"
+								class=""
+								placeholder="Search"
+								@keypress.enter.prevent="Search"
+							>
+							<button class="uk-button-primary" @click="Search">
+								<i class="mdi mdi-magnify" />
+							</button>
+						</form>
+					</div>
 					<el-table :data="SectionHeads"
 						:pagination-props="null"
 						:paging="false"
@@ -103,7 +116,7 @@ export default {
 	}),
 	head () {
 		return {
-			'title': 'Employee | SectionHeads'
+			'title': 'EMS | SectionHeads'
 		}
 	},
 	computed: {
@@ -111,7 +124,8 @@ export default {
 	methods: {
 		addSection (){
 	
-		}
+		},
+		Search (){}
 	}
 }
 </script>

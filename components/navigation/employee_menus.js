@@ -1,9 +1,9 @@
 import { scHelpers } from "~/assets/js/utils";
-const { uniqueID } = scHelpers;
+// const { uniqueID } = scHelpers;
 
 export const menuEntries = [
 	{
-		id: uniqueID(),
+		// id: uniqueID(),
 		title: "Employee profiles",
 		page: "/ems",
 		icon: "mdi mdi-account",
@@ -11,19 +11,19 @@ export const menuEntries = [
 		level: 0,
 		submenu:[
 			{
-				id: uniqueID(),
+				// id: uniqueID(),
 				title: "Add Employee",
 				page: "/ems/create"
 			},
 			{
-				id: uniqueID(),
+				// id: uniqueID(),
 				title: "Employees List",
 				page: "/ems"
 			}
 		],
 	},
 	{
-		id: uniqueID(),
+		// id: uniqueID(),
 		title: "System Presets",
 		page: "/system_presets",
 		icon: "mdi mdi-cogs",
@@ -31,57 +31,51 @@ export const menuEntries = [
 		level: 0,
 		submenu: [
 			{
-				id: uniqueID(),
+				// id: uniqueID(),
 				title: "Genders",
 				page: "/ems/system_presets/genders"
 			},
 			{
-				id: uniqueID(),
+				// id: uniqueID(),
 				title: "Identification Types",
 				page: "/ems/system_presets/personal_identification_types"
 			},
 			{
-				id: uniqueID(),
+				// id: uniqueID(),
 				title: "Countries",
 				page: "/ems/system_presets/countries"
 			},
 			{
-				id: uniqueID(),
+				// id: uniqueID(),
 				title: "Relationship Status",
 				page: "/ems/system_presets/relationship_status"
 			},
 			{
-				id: uniqueID(),
+				// id: uniqueID(),
 				title: "Departments",
 				page: "/ems/system_presets/departments"
 			},
 			{
-				id: uniqueID(),
+				// id: uniqueID(),
 				title: "Department Heads",
 				page: "/ems/system_presets/department_heads"
 			},
 			{
-				id: uniqueID(),
+				// id: uniqueID(),
 				title: "Sections",
 				page: "/ems/system_presets/sections"
 			},
 			{
-				id: uniqueID(),
+				// id: uniqueID(),
 				title: "Section Heads",
 				page: "/ems/system_presets/section_heads"
 			},
-			// {
-			// 	id: uniqueID(),
-			// 	title: "Employment Types",
-			// 	page: "/ems/system_presets/employment_types"
-			// }
+			{
+				// id: uniqueID(),
+				title: "Employment Types",
+				page: "/ems/system_presets/employment_types"
+			}
 		]
 	},
-	{
-		id: uniqueID(),
-		title: "System Settings",
-		icon: "mdi mdi-settings",
-		page: ""
-	},	
 ];
 

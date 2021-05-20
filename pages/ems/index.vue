@@ -10,83 +10,90 @@
 		<div id="sc-page-content">
 			<ScCard>
 				<ScCardBody>
-					<!-- <form class="uk-search uk-search-default uk-width-1- uk-round">
-						<span uk-search-icon></span>
-						<input v-model="searchTerm"
-							class="uk-search-input"
-							type="search"
-							placeholder="Search Employee ..."
-							@keypress.enter.prevent="SearchEmployee"
-						>
-					</form> -->
-					<el-table :data="employees"
-						:pagination-props="null"
-						:paging="false"
-						stripe
-					>
-						<el-table-column prop="flow_no"
-							label="#"
-							sortable="custom"
-							type="expand"
-						>
-							<template slot-scope="props">
-								<p>	Staff No: {{ props.row.employment_data.employee_number }}</p>
-								<p>Name:{{ formatName(props.row.first_name,props.row.last_name) }}</p>
-								<p>Gender: {{ props.row.gender_id }}</p>
-								<p>Mobile Number: {{ props.row.primary_mobile_number }}</p>
-								<p>Email: {{ props.row.primary_email }}</p>
-								<p>Section: {{ props.row.employment_data.section_id }}</p>
-							</template>
-						</el-table-column>
-						<el-table-column prop="employment_data.employee_number" label="Staff No." sortable="custom">
-						</el-table-column>
-						<el-table-column prop="first_name" label="Name" sortable="custom">
-							<template slot-scope="props">
-								{{ formatName(props.row.first_name,props.row.last_name) }}
-							</template>
-						</el-table-column>
-						<el-table-column prop="gender_id" label="Gender" sortable="custom">
-						</el-table-column>
-						<el-table-column prop="primary_mobile_number" label="Mobile No." sortable="custom">
-						</el-table-column>
-						<el-table-column prop="primary_email" label="Email" sortable="custom">
-						</el-table-column>
-						<el-table-column prop="employment_data.section_id" label="Section" sortable="custom">
-						</el-table-column>
-						<el-table-column label="Action">
-							<template slot-scope="scope">
-								<el-button-group>
-									<nuxt-link :to="'/ems/view/'+ scope.row.employee_id">
-										<el-button type="success"
-						
-											size="mini"
-											uk-tooltip="Edit"
-											@click="handleEditRow(scope.$index)"
-										>
-											<i class="el-icon-edit" />
-										</el-button>
-									</nuxt-link>
-									<el-button type="danger" size="mini" uk-tooltip="Delete" @click="handleSaveRow(scope.$index)">
-										<i class="el-icon-delete" />
-									</el-button>
-									<el-button type="primary" size="mini" uk-tooltip="View" @click="handleSaveRow(scope.$index)">
-										<i class="el-icon-view" />
-									</el-button>
-								</el-button-group>
-							</template>
-						</el-table-column>
-					</el-table>
+					<div class="uk-flex uk-flex-right">
+						<form class="uk-flex">
+							<input v-model="searchTerm"
+								name="search"
+								type="search"
+								class=""
+								placeholder="Search"
+								@keypress.enter.prevent="SearchEmployee"
+							>
+							<button class="uk-button-primary" @click.prevent="SearchEmployee">
+								<i class="mdi mdi-magnify" />
+							</button>
+						</form>
+					</div>
 					<div>
-						<!-- <el-pagination class="uk-pagination"
-							:current-page.sync="currentPage"
-							:page-sizes="[100, 200, 300, 400]"
-							:page-size="100"
-							layout="total, sizes, prev, pager, next"
-							:total="400"
-							@size-change="handleSizeChange"
-							@current-change="handleCurrentChange"
+						<el-table :data="employees"
+							:pagination-props="null"
+							:paging="false"
+							stripe
 						>
-						</el-pagination> -->
+							<el-table-column prop="flow_no"
+								label="#"
+								sortable="custom"
+								type="expand"
+							>
+								<template slot-scope="props">
+									<p>	Staff No: {{ props.row.employment_data.employee_number }}</p>
+									<p>Name:{{ formatName(props.row.first_name,props.row.last_name) }}</p>
+									<p>Gender: {{ props.row.gender_id }}</p>
+									<p>Mobile Number: {{ props.row.primary_mobile_number }}</p>
+									<p>Email: {{ props.row.primary_email }}</p>
+									<p>Section: {{ props.row.employment_data.section_id }}</p>
+								</template>
+							</el-table-column>
+							<el-table-column prop="employment_data.employee_number" label="Staff No." sortable="custom">
+							</el-table-column>
+							<el-table-column prop="first_name" label="Name" sortable="custom">
+								<template slot-scope="props">
+									{{ formatName(props.row.first_name,props.row.last_name) }}
+								</template>
+							</el-table-column>
+							<el-table-column prop="gender_id" label="Gender" sortable="custom">
+							</el-table-column>
+							<el-table-column prop="primary_mobile_number" label="Mobile" sortable="custom">
+							</el-table-column>
+							<el-table-column prop="primary_email" label="Email" sortable="custom">
+								<template slot-scope="props">
+									{{ truncateEmail(props.row.primary_email) }}
+								</template>
+							</el-table-column>
+							<el-table-column prop="employment_data.section_id" label="Section" sortable="custom">
+							</el-table-column>
+							<el-table-column label="Action">
+								<template slot-scope="scope">
+									<el-button-group>
+										<nuxt-link :to="'/ems/view/'+ scope.row.employee_id">
+											<el-button type="success"
+						
+												size="mini"
+												uk-tooltip="Edit"
+												@click="handleEditRow(scope.$index)"
+											>
+												<i class="el-icon-edit" />
+											</el-button>
+										</nuxt-link>
+										<el-button type="danger" size="mini" uk-tooltip="Delete" @click="handleSaveRow(scope.$index)">
+											<i class="el-icon-delete" />
+										</el-button>
+										<el-button type="primary" size="mini" uk-tooltip="View" @click="handleSaveRow(scope.$index)">
+											<i class="el-icon-view" />
+										</el-button>
+									</el-button-group>
+								</template>
+							</el-table-column>
+						</el-table>
+					</div>
+					<div>
+						<Pagination v-if="showPagination"
+							:total-pages="pages"
+							:current-page="currentPage"
+							:per-page="perPage"
+							@pagechanged="getEmployees"
+							@dropChanged="perPageChanged"
+						/>
 					</div>
 				</ScCardBody>
 			</ScCard>
@@ -102,54 +109,83 @@ Vue.use(ElementUI)
 import lang from 'element-ui/lib/locale/lang/en'
 import locale from 'element-ui/lib/locale'
 locale.use(lang)
-
-
-import DataTable from "@andresouzaabreu/vue-data-table";
-Vue.component("DataTable", DataTable);
-// import "bootstrap/dist/css/bootstrap.min.css";
-import "@andresouzaabreu/vue-data-table/dist/DataTable.css";
-import Vuetable from 'vuetable-2'
-import 'vue-good-table/dist/vue-good-table.css'
-
+import Pagination from "~/components/pagination";
 export default {
 	components: {
+		Pagination,
 	},
 	layout: 'employee',
 	data: () => ({
 		searchTerm:'',
-		employees:[]
+		employees:[],
+		pages:0,
+		perPage:10,
+		currentPage:1,
+		showPagination:true
 		
 	}),
 	head () {
 		return {
-			'title': 'Employee | List of Employees'
+			'title': 'EMS | List of Employees'
 		}
 	},
 	    computed: {
 	},
 	mounted () {
 		this.getEmployees()
+ 
 	},
 
 	methods: {
-		      handleSizeChange (val) {
+		handleSizeChange (val) {
 			console.log(`${val} items per page`);
 		},
 		handleCurrentChange (val) {
 			console.log(`current page: ${val}`);
 		},
-		SearchEmployee () {
-
-		},
-		async getEmployees () {
-			  const headers = {'x-service': 'ems-svc'};
-			await this.$axios.get(`api/employees`, { headers })
+		async SearchEmployee () {
+			 const headers = {'x-service': 'ems-svc'};
+			await this.$axios.get(`api/employees?qpsearch=${this.searchTerm}`, { headers })
 				.then(response =>{
 					this.employees = response.data.data
-					console.log(this.employees)
 				})
 				.catch(error => {
 				})
+		},
+		async getEmployees (page) {
+			this.currentPage=page
+			  const headers = {'x-service': 'ems-svc'};
+			await this.$axios.get(`api/employees?page=${page}&per-page=${this.perPage}`, { headers })
+				.then(response =>{
+					this.employees = response.data.data	
+					this.totalRecords=response.data.totalCount
+					this.pages=response.data.totalCount
+					this.currentPage=1
+					this.perPage=JSON.parse(response.data.pageSize)
+					if(response.data.pageCount>1){
+						this.showPagination=true
+					}
+				})
+				.catch(error => {
+				})
+		},
+		async perPageChanged (page) {
+			try {
+				this.perPage = page;
+				  const headers = {'x-service': 'ems-svc'};
+				await this.$axios.get(					
+					`api/employees?per-page=${page}`, {headers}
+				)
+					.then(response =>{
+						this.employees = response.data.data	
+						this.totalRecords=response.data.totalCount
+						this.pages=response.data.totalCount
+						this.currentPage=1
+					})
+					.catch(err => {			        
+					})
+			} catch (err) {
+			}
 		},
   	handleEditRow (index) {
 			this.employees[index].edited = true
@@ -158,7 +194,12 @@ export default {
 		handleSaveRow (index) {
 			this.employees[index].edited = false
 		},
-
+		truncateEmail (email) {
+			if (email.length > 5) {
+				return email.substring(0, 5) + '...';
+			}
+			return email;
+		},
 		formatName (name1, name2){
 			var nam1=name1
 			var nam2=name2
@@ -170,7 +211,7 @@ export default {
 }
 </script>
 <style lang="scss">
-  @import '~scss/plugins/vue-good-table.scss';
+
 </style>
 <style scoped>
 .custom-icon {
@@ -189,5 +230,14 @@ export default {
    display: block !important;
    font-size: 3;
  } 
+ .index-search-form {
+    display: flex;
+}
+
+.inputField {
+    flex: 1;
+}
+
+
 
 </style>

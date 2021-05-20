@@ -50,11 +50,5 @@ export const menuEntries = [
 			},
 		]
 	},
-	{
-		id: uniqueID(),
-		title: "System Settings",
-		icon: "mdi mdi-settings",
-		page: ""
-	},	
 ];
 

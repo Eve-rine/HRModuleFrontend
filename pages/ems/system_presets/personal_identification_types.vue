@@ -15,6 +15,20 @@
 		<div id="sc-page-content">
 			<ScCard>
 				<ScCardBody>
+					<div class="uk-flex uk-flex-right">
+						<form class="uk-flex">
+							<input v-model="searchTerm"
+								name="search"
+								type="search"
+								class=""
+								placeholder="Search"
+								@keypress.enter.prevent="Search"
+							>
+							<button class="uk-button-primary" @click.prevent="Search">
+								<i class="mdi mdi-magnify" />
+							</button>
+						</form>
+					</div>
 					<el-table :data="identity_types"
 						:pagination-props="null"
 						:paging="false"
@@ -87,11 +101,12 @@ export default {
 	},
 	layout: 'employee',
 	data: () => ({
-		identity_types:[],		
+		identity_types:[],
+		searchTerm:''		
 	}),
 	head () {
 		return {
-			'title': 'Employee | Personal Identification types'
+			'title': 'EMS | Personal Identification Types'
 		}
 	},
 	computed: {
@@ -102,8 +117,27 @@ export default {
 		this.getIdentityTypes()
 	},
 	methods: {
-		addType (){
+		async addType (identification_details) {
+			let formData = new FormData();
+			formData.append('personal_identification_type', identification_details.personal_identification_type);
+			try {
+				await this.$axios.post( 'api/identification-type',
+					formData,
+					{
+						headers: {
+							'x-service': 'ems-svc'
+						},
+					},
+				).then(response=>{
+					this.$router.push('/lms')							
 			
+				}) .catch(function (response) {
+
+				})
+			}catch{
+
+			}
+				
 		},
 		async getIdentityTypes () {
 			const headers = {'x-service': 'ems-svc'};
@@ -114,6 +148,15 @@ export default {
 				.catch(error => {
 				})
 		},
+		async Search (){
+					 const headers = {'x-service': 'ems-svc'};
+			await this.$axios.get(`api/identification-types?qpsearch=${this.searchTerm}`, { headers })
+				.then(response =>{
+					this.identity_types = response.data.data
+				})
+				.catch(error => {
+				})
+		}
 
 	}
 }

@@ -55,18 +55,19 @@ export default {
 	},
 	data: () => ({
 		gender_details:{
-			gender:''	
+			gender:'',
+			gender_id:''	
 		}
 	}),
 	head () {
 		return {
-			'title': 'Employee | Gender'
+			'title': 'EMS | Gender'
 		}
 	},
 	computed:{
 	},
 	mounted (){
-		// this.getRecord(this.gender_details)
+		this.getRecord(this.gender_details.gender_id, this.gender_details)
 	},
 
 	methods: {

@@ -7,8 +7,13 @@
 						Relationship Status
 					</label>
 					<div class="uk-form-controls">
-						<ScInput v-model="relationship_details.relationship_status" name="relationship_status" mode="outline" :error-state="false">													
+						<ScInput v-model="relationship_details.relationship_status" name="relationship_status" mode="outline" :error-state="errors.relationship_status ? true : false">													
 						</ScInput>
+						<ul class="sc-vue-errors">
+							<li v-if="errors.relationship_status">
+								{{ errors.relationship_status[0] }}
+							</li>
+						</ul>
 					</div>
 				</div>
 			</div>

@@ -15,54 +15,70 @@
 		<div id="sc-page-content">
 			<ScCard>
 				<ScCardBody>
-					<el-table :data="countries"
-						:pagination-props="null"
-						:paging="false"
-						stripe
-					>
-						<el-table-column prop="flow_no"
-							label="#"
-							sortable="custom"
-							type="expand"
+					<div class="uk-flex uk-flex-right">
+						<form class="uk-flex">
+							<input v-model="searchTerm"
+								name="search"
+								type="search"
+								class=""
+								placeholder="Search"
+								@keypress.enter.prevent="Search"
+							>
+							<button class="uk-button-primary" @click.prevent="Search">
+								<i class="mdi mdi-magnify" />
+							</button>
+						</form>
+					</div>
+					<div>
+						<el-table :data="countries"
+							:pagination-props="null"
+							:paging="false"
+							stripe
 						>
-							<template slot-scope="props">
-								<p>Country Code: {{ props.row.country-code }}</p>
-								<p>Country: {{ props.row.country }}</p>
-								<p>Nationality: {{ props.row.nationality }}</p>
-								<p>Mobile Number: {{ props.row.mobile_number }}</p>
-								<p>Email: {{ props.row.email_address }}</p>
-								<p>Section: {{ props.row.section }}</p>
-							</template>
-						</el-table-column>
-						<el-table-column prop="country_code" label="Country Code" sortable="custom">
-						</el-table-column>
-						<el-table-column prop="country" label="Country" sortable="custom">
-						</el-table-column>
-						<el-table-column prop="nationality" label="nationality" sortable="custom">
-						</el-table-column>
-						<el-table-column label="Action">
-							<template slot-scope="scope">
-								<el-button-group>
-									<nuxt-link :to="'/ems/view/'+ scope.row.employee_id">
-										<el-button type="success"
-											class="elbutton"
-											size="mini"
-											uk-tooltip="Edit"
-											@click="handleEditRow(scope.$index)"
-										>
-											<i class="el-icon-edit" />
+							<el-table-column prop="flow_no"
+								label="#"
+								sortable="custom"
+								type="expand"
+							>
+								<template slot-scope="props">
+									<p>Country Code: {{ props.row.country-code }}</p>
+									<p>Country: {{ props.row.country }}</p>
+									<p>Nationality: {{ props.row.nationality }}</p>
+									<p>Mobile Number: {{ props.row.mobile_number }}</p>
+									<p>Email: {{ props.row.email_address }}</p>
+									<p>Section: {{ props.row.section }}</p>
+								</template>
+							</el-table-column>
+							<el-table-column prop="country_code" label="Country Code" sortable="custom">
+							</el-table-column>
+							<el-table-column prop="country" label="Country" sortable="custom">
+							</el-table-column>
+							<el-table-column prop="nationality" label="nationality" sortable="custom">
+							</el-table-column>
+							<el-table-column label="Action">
+								<template slot-scope="scope">
+									<el-button-group>
+										<nuxt-link :to="'/ems/view/'+ scope.row.employee_id">
+											<el-button type="success"
+												class="elbutton"
+												size="mini"
+												uk-tooltip="Edit"
+												@click="handleEditRow(scope.$index)"
+											>
+												<i class="el-icon-edit" />
+											</el-button>
+										</nuxt-link>
+										<el-button type="danger" size="mini" uk-tooltip="Delete" @click="handleSaveRow(scope.$index)">
+											<i class="el-icon-delete" />
 										</el-button>
-									</nuxt-link>
-									<el-button type="danger" size="mini" uk-tooltip="Delete" @click="handleSaveRow(scope.$index)">
-										<i class="el-icon-delete" />
-									</el-button>
-									<el-button type="primary" size="mini" uk-tooltip="View" @click="handleSaveRow(scope.$index)">
-										<i class="el-icon-view" />
-									</el-button>
-								</el-button-group>
-							</template>
-						</el-table-column>
-					</el-table>
+										<el-button type="primary" size="mini" uk-tooltip="View" @click="handleSaveRow(scope.$index)">
+											<i class="el-icon-view" />
+										</el-button>
+									</el-button-group>
+								</template>
+							</el-table-column>
+						</el-table>
+					</div>
 				</ScCardBody>
 			</ScCard>
 			<div id="modal-nationality" class="uk-flex-middle" uk-modal="bg-close:false">
@@ -84,6 +100,13 @@
 </template>
 
 <script>
+import Vue from 'vue';
+import ElementUI from 'element-ui'
+import 'element-ui/lib/theme-chalk/index.css'
+Vue.use(ElementUI)
+import lang from 'element-ui/lib/locale/lang/en'
+import locale from 'element-ui/lib/locale'
+locale.use(lang)
 import  CountriesForm from "~/components/serviceComponents/ems/countries-form";
 export default {
 	components: {
@@ -91,11 +114,12 @@ export default {
 	},
 	layout: 'employee',
 	data: () => ({
-		countries:[],	
+		countries:[],
+		searchTerm:''	
 	}),
 	head () {
 		return {
-			'title': 'Employee | Countries'
+			'title': 'EMS | Countries'
 		}
 	},
 	computed: {
@@ -105,8 +129,29 @@ export default {
 		this.getCountries()
 	},
 	methods: {
-		addCountries (){
+		async addCountries (country_details) {
+			let formData = new FormData();
+			formData.append('country_code', country_details.country_code);
+			formData.append('country', country_details.country);
+			formData.append('nationality', country_details.nationality);
+			try {
+				await this.$axios.post( 'api/country',
+					formData,
+					{
+						headers: {
+							'x-service': 'ems-svc'
+						},
+					},
+				).then(response=>{
+					this.$router.push('/lms')							
 			
+				}) .catch(function (response) {
+
+				})
+			}catch{
+
+			}
+				
 		},
 		async getCountries () {
 			const headers = {'x-service': 'ems-svc'};
@@ -117,6 +162,15 @@ export default {
 				.catch(error => {
 				})
 		},
+		async Search (){
+			const headers = {'x-service': 'ems-svc'};
+			await this.$axios.get(`api/countries?qpsearch=${this.searchTerm}`, { headers })
+				.then(response =>{
+					this.countries = response.data.data
+				})
+				.catch(error => {
+				})
+		}
 
 	}
 }

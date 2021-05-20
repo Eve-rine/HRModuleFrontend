@@ -1,6 +1,54 @@
 <template>
-	<div id="sc-page-wrapper">
-		<p uk-margin class="uk-margin-top uk-flex-center uk-flex uk-flex-center uk-margin-right">
+	<div id="sc-page-wrapper" class="uk-flex uk-flex-column">
+		<div id="sc-page-top-bar" class="sc-top-bar">
+			<div class="sc-top-bar-content uk-flex uk-flex-1">
+				<h1 class="sc-top-bar-title uk-flex-1">
+					APPROVED LEAVES
+				</h1>
+				<!-- </div> -->
+			</div>
+			<div class="sc-top-bar-content uk-flex-1 uk-flex-right">
+				<div class="sc-actions">
+					<!-- <button class="sc-button sc-button-mini md-bg-green-400" data-uk-tooltip="Edit account"> -->
+					<a 
+						href="javascript:void(0)"
+						class="sc-actions-icon md-primary"
+						data-uk-tooltip
+						title="Pending Leaves"
+					>
+						<i class="mdi mdi-dna sc-button-warning"></i>
+						<!-- <i class="mdi mdi-dna md-color-indigo-600"></i> -->
+					</a>
+					<!-- </button> -->
+		
+					<a 
+						href="javascript:void(0)"
+						class="sc-actions-icon sc-js-block-wave"
+						data-uk-tooltip
+						title="Approved Leaves"
+					>
+						<i class="mdi mdi-check-bold sc-button-success"></i>
+					</a>
+					<a 
+						href="javascript:void(0)"
+						class="sc-actions-icon sc-js-block-wave"
+						data-uk-tooltip
+						title="Declined Leaves"
+					>
+						<i class="mdi mdi-close-outline sc-button-danger"></i>
+					</a>
+					<a  
+						href="javascript:void(0)"
+						class="sc-actions-icon sc-js-block-wave"
+						data-uk-tooltip
+						title="All Leaves"
+					>
+						<i class="mdi mdi-view-list sc-button-primary"></i>
+					</a>
+				</div>
+			</div>
+		</div>
+		<!-- <p uk-margin class="uk-margin-top uk-flex-center uk-flex uk-flex-center uk-margin-right">
 			<button class="sc-button sc-button-large sc-button-primary uk-width-1-5">
 				PENDING	LEAVES	<i class="mdi mdi-dna md-color-white"></i>
 			</button>
@@ -13,7 +61,7 @@
 			<button class="sc-button sc-button-primary sc-button-large uk-width-1-5 uk-margin-left uk-margin-right">
 				ALL	LEAVES<i class="mdi mdi-view-list md-color-white "></i>
 			</button>
-		</p>
+		</p> -->
 		<div id="sc-page-content">
 			<div class="sc-fab-page-wrapper">
 				<nuxt-link :to="'/lms/create'" data-uk-tooltip="Apply Leave">
@@ -23,23 +71,26 @@
 				</nuxt-link>
 			</div>
 			<ScCard>
-				<ScCardHeader class="uk-flex uk-flex-middle" separator>
+				<!-- <ScCardHeader class="uk-flex uk-flex-middle" separator>
 					<ScCardTitle class="uk-flex-1">
 						{{ titleText }}
 						LEAVE APPLICATIONS
 					</ScCardTitle>
-				</ScCardHeader>
+				</ScCardHeader> -->
 				<ScCardBody>
-					<form class="uk-search uk-search-default uk-width-1-1">
-						<span uk-search-icon></span>
-						<input v-model="searchTerm"
-							class="uk-search-input"
-							type="search"
-							placeholder="Search Leave ..."
-							@keypress.enter.prevent="SearchLeave"
-						>
-					</form>
-
+					<div class="uk-align-right@m">
+						<form class="uk-flex uk-search">
+							<input name="search"
+								type="search"
+								class=""
+								placeholder="Search"
+								@keypress.enter.prevent="SearchLeave"
+							>
+							<button class="uk-button-primary" @click="SearchLeave">
+								<i class="mdi mdi-magnify" />
+							</button>
+						</form>
+					</div>
 					<el-table :data="leave"
 						:pagination-props="null"
 						:paging="false"

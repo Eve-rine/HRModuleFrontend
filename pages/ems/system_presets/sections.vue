@@ -15,7 +15,21 @@
 		<div id="sc-page-content">
 			<ScCard>
 				<ScCardBody>
-					<el-table :data="departments"
+					<div class="uk-flex uk-flex-right">
+						<form class="uk-flex">
+							<input v-model="searchTerm"
+								name="search"
+								type="search"
+								class=""
+								placeholder="Search"
+								@keypress.enter.prevent="Search"
+							>
+							<button class="uk-button-primary" @click.prevent="Search">
+								<i class="mdi mdi-magnify" />
+							</button>
+						</form>
+					</div>
+					<el-table :data="sections"
 						:pagination-props="null"
 						:paging="false"
 						stripe
@@ -92,7 +106,7 @@ export default {
 	layout: 'employee',
 	data: () => ({
 		sections:[],
-				
+		serchTerm:''	
 	}),
 	head () {
 		return {
@@ -115,6 +129,16 @@ export default {
 				.catch(error => {
 				})
 		},
+		addSection (){},
+		async Section (){
+			const headers = {'x-service': 'ems-svc'};
+			await this.$axios.get(`api/sections?qpsearch=${this.searchTerm}`, { headers })
+				.then(response =>{
+					this.sections = response.data.data
+				})
+				.catch(error => {
+				})
+		}
 	}
 }
 </script>

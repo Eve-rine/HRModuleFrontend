@@ -138,12 +138,17 @@ module.exports = {
               }
             ]
           }],
+		  ['nuxt-sweetalert2',
+		  {
+			  confirmButtonColor: '#41b882',
+			  cancelButtonColor: '	#FF0000'
+			}
+		  ],
 	],
 	axios: {
 		proxy: true,
 		prefix: "/",
 		credentials: true,
-		// baseUrl:"http://gateway.supasol.tk"
 	},
 	
 	proxy: {

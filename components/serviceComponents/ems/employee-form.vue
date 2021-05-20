@@ -151,25 +151,27 @@
 							</ScCardTitle>
 						</ScCardHeader>
 						<div class="uk-grid uk-margin-top" data-uk-grid>
-							<div class="uk-width-1-6@m">
+							<div class="uk-width-1-3@m">
 								<label class="uk-form-label">
-									Primary Mobile Number
+									Pri. Mobile Number
 								</label>
 								<div class="uk-form-controls">
-									<ScInput v-model="contact_details.primary_mobile_number" mode="outline"></ScInput>
-								</div>
-							</div>
-							<div class="uk-width-1-6@m">
-								<label class="uk-form-label">
-									Alternate Mobile Number
-								</label>
-								<div class="uk-form-controls">
-									<ScInput v-model="contact_details.alternate_mobile_number" mode="outline"></ScInput>
+									<!-- <ScInput v-model="contact_details.primary_mobile_number" mode="outline"></ScInput> -->
+									<VuePhoneNumberInput v-model="contact_details.primary_mobile_number" />
 								</div>
 							</div>
 							<div class="uk-width-1-3@m">
 								<label class="uk-form-label">
-									Primary Email Adress
+									Alt. Mobile Number
+								</label>
+								<div class="uk-form-controls">
+									<!-- <ScInput v-model="contact_details.alternate_mobile_number" mode="outline"></ScInput> -->
+									<vue-tel-input v-model="contact_details.alternate_mobile_number"></vue-tel-input>
+								</div>
+							</div>
+							<div class="uk-width-1-3@m">
+								<label class="uk-form-label">
+									Pri. Email Adress
 								</label>
 								<div class="uk-form-controls">
 									<ScInput v-model="contact_details.primary_email" mode="outline"></ScInput>
@@ -629,7 +631,7 @@
 									<div class="uk-grid-match uk-grid" data-uk-grid>
 										<div class="uk-width-1-4@m">
 											<label>Full Name</label>
-											<ScInput v-model="dependants[index].department_name" name="dependant_name" mode="outline" :error-state="false">													
+											<ScInput v-model="dependant.dependant_name" name="dependant_name" mode="outline" :error-state="false">													
 											</ScInput>
 										</div>
 										<div class="uk-width-1-4@m">
@@ -751,6 +753,15 @@
 </template>
 
 <script>
+import Vue from 'vue';
+import VuePhoneNumberInput from 'vue-phone-number-input';
+import 'vue-phone-number-input/dist/vue-phone-number-input.css';
+ 
+Vue.component('VuePhoneNumberInput', VuePhoneNumberInput);
+import VueTelInput from 'vue-tel-input'
+import 'vue-tel-input/dist/vue-tel-input.css'
+
+Vue.use(VueTelInput)
 import ScInput from '~/components/Input'
 import Select2 from '~/components/Select2'
 import 'vue-good-table/dist/vue-good-table.css'
@@ -900,8 +911,8 @@ export default {
 		},
 		Gender () {
 			return this.genders.map(function (obj) {
-				obj.id = obj.id || obj.id;
-				obj.text = obj.text || obj.name;
+				obj.id = obj.id || obj.gender_id;
+				obj.text = obj.text || obj.gender;
 				return obj;
 			});
 		},
@@ -928,6 +939,7 @@ export default {
 		this.getCountries()
 		this.getEmploymentTypes()
 		this.getDepartments()
+		this.getGenders()
 	},
 	methods: {
 		addDependant () {
@@ -1064,6 +1076,22 @@ export default {
 				)
 					.then(res =>{
 						this.EmploymentTypes=res.data.data
+	
+					})
+					.catch(err => {
+						return
+					})
+			} catch (err) {
+			}
+		},
+		async getGenders () {
+			const headers = {'x-service': 'ems-svc'};
+			try {
+				await this.$axios.get(
+					`api/gender`, { headers }
+				)
+					.then(res =>{
+						this.genders=res.data.data
 	
 					})
 					.catch(err => {

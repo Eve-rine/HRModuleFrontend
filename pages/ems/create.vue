@@ -20,6 +20,11 @@ export default {
 	methods:{
 		async addEmployee (dependants, personal_details, work_details, contact_details, kins, work_history, academic_qualifications, referees){
 			let formData = new FormData();
+			// let Dependants= dependants;
+			// for (var i = 0; i < Dependants.length; i++) {
+			// 	let tag= Dependants[i];
+			// 	formData.append("Dependants[" + i + "]", tag.dependant_id);
+			// }
 			formData.append('first_name', personal_details.first_name);
 			formData.append('middle_name', personal_details.middle_name);
 			formData.append('last_name', personal_details.last_name);
@@ -42,12 +47,15 @@ export default {
 			formData.append('primary_email', work_details.primary_email);
 			formData.append('work_email', work_details.work_email);
 			formData.append('employment_type_id', work_details.employment_type_id);
+			formData.append('employment_type', work_details.employment_duration);
+			formData.append('employee_number', work_details.employment_duration);
+			formData.append('section_id', work_details.employment_duration);
 			formData.append('employment_duration', work_details.employment_duration);
 			formData.append('employment_date', work_details.employment_date);
 			formData.append('exit_date', work_details.exit_date);
 			formData.append('Dependants', dependants);
-			formData.append('Kins', kins);
-			formData.append('Referees', referees);
+			// formData.append('Kins[]', kins);
+			// formData.append('Referees[]', referees);
 			formData.append('WorkHistory', work_history);
 			formData.append('AcademicQualifications', academic_qualifications);
 			try {

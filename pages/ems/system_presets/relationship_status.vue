@@ -15,6 +15,20 @@
 		<div id="sc-page-content">
 			<ScCard>
 				<ScCardBody>
+					<div class="uk-flex uk-flex-right">
+						<form class="uk-flex">
+							<input v-model="searchTerm"
+								name="search"
+								type="search"
+								class=""
+								placeholder="Search"
+								@keypress.enter.prevent="Search"
+							>
+							<button class="uk-button-primary" @click.prevent="Search">
+								<i class="mdi mdi-magnify" />
+							</button>
+						</form>
+					</div>
 					<el-table :data="relationshipStatus"
 						:pagination-props="null"
 						:paging="false"
@@ -87,11 +101,12 @@ export default {
 	},
 	layout: 'employee',
 	data: () => ({
-		relationshipStatus:[],	
+		relationshipStatus:[],
+		searhTerm:''	
 	}),
 	head () {
 		return {
-			'title': 'Employee | Relationship Status'
+			'title': 'EMS | Relationship Status'
 		}
 	},
 	computed: {
@@ -110,8 +125,36 @@ export default {
 				.catch(error => {
 				})
 		},
-		addStatus (){
+		async addStatus (status_details) {
+			let formData = new FormData();
+			formData.append('relationship_status', status_details.relationship_status);
+			try {
+				await this.$axios.post( 'api/relationship-status',
+					formData,
+					{
+						headers: {
+							'x-service': 'ems-svc'
+						},
+					},
+				).then(response=>{
+					this.$router.push('/lms')
+								
 			
+				}) .catch(function (response) {
+
+				})
+			}catch{
+
+			}				
+		},
+		async Search (){
+			const headers = {'x-service': 'ems-svc'};
+			await this.$axios.get(`api/relationship-statuses?qpsearch=${this.searchTerm}`, { headers })
+				.then(response =>{
+					this.relationshipStatus = response.data.data
+				})
+				.catch(error => {
+				})
 		}
 
 	}

@@ -15,6 +15,20 @@
 		<div id="sc-page-content">
 			<ScCard>
 				<ScCardBody>
+					<div class="uk-flex uk-flex-right">
+						<form class="uk-flex">
+							<input v-model="searchTerm"
+								name="search"
+								type="search"
+								class=""
+								placeholder="Search"
+								@keypress.enter.prevent="Search"
+							>
+							<button class="uk-button-primary" @click.prevent="Search">
+								<i class="mdi mdi-magnify" />
+							</button>
+						</form>
+					</div>
 					<el-table :data="departments"
 						:pagination-props="null"
 						:paging="false"
@@ -78,6 +92,13 @@
 </template>
 
 <script>
+import Vue from 'vue';
+import ElementUI from 'element-ui'
+import 'element-ui/lib/theme-chalk/index.css'
+Vue.use(ElementUI)
+import lang from 'element-ui/lib/locale/lang/en'
+import locale from 'element-ui/lib/locale'
+locale.use(lang)
 import  DepartmentsForm from "~/components/serviceComponents/ems/departments-form";
 export default {
 	components: {
@@ -86,11 +107,12 @@ export default {
 	layout: 'employee',
 	data: () => ({
 		departments:[],
+		searchTerm:''
 	
 	}),
 	head () {
 		return {
-			'title': 'Employee | Departments'
+			'title': 'EMS | Departments'
 		}
 	},
 	computed: {
@@ -111,6 +133,15 @@ export default {
 				.catch(error => {
 				})
 		},
+		async Search (){
+		 const headers = {'x-service': 'ems-svc'};
+			await this.$axios.get(`api/departments?qpsearch=${this.searchTerm}`, { headers })
+				.then(response =>{
+					this.departments = response.data.data
+				})
+				.catch(error => {
+				})
+		}
 	}
 }
 </script>

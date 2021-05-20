@@ -7,8 +7,13 @@
 						Employment Type
 					</label>
 					<div class="uk-form-controls">
-						<ScInput v-model="employment_details.employment_type" name="employment_type" mode="outline" :error-state="false">													
+						<ScInput v-model="employment_details.employment_type" name="employment_type" mode="outline" :error-state="errors.employment_type ? true : false">													
 						</ScInput>
+						<ul class="sc-vue-errors">
+							<li v-if="errors.employment_type">
+								{{ errors.employment_type[0] }}
+							</li>
+						</ul>
 					</div>
 				</div>
 				<div class="uk-width-1-1">
@@ -16,14 +21,19 @@
 						Working Hours
 					</label>
 					<div class="uk-form-controls">
-						<ScInput v-model="employment_details.working_hours" name="working_hours" mode="outline" :error-state="false">													
+						<ScInput v-model="employment_details.working_hours" name="working_hours" mode="outline" :error-state="errors.working_hours ? true : false">													
 						</ScInput>
+						<ul class="sc-vue-errors">
+							<li v-if="errors.working_hours">
+								{{ errors.working_hours[0] }}
+							</li>
+						</ul>
 					</div>
 				</div>
 			</div>
 		</form>
 		<div v-if="hasSubmitButton" class="uk-modal-footer uk-text-right">
-			<button class="sc-button sc-button-primary" data-uk-tooltip="Save" @click.prevent="submitForm(gender_details)">
+			<button class="sc-button sc-button-primary" data-uk-tooltip="Save" @click.prevent="submitForm(employment_details)">
 				{{ buttonText }}
 			</button>
 		</div>
