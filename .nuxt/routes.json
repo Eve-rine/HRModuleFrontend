@@ -2,232 +2,199 @@
   {
     "name": "dashboard",
     "path": "/dashboard",
-    "component": "/var/www/html/projects/frontend-boilerplate/pages/dashboard/index.vue",
-    "chunkName": "pages/dashboard/index",
-    "_name": "_2b57f3dd"
+    "component": "/var/www/html/projects/enterprise/dukapal/frontend/frontend-service/pages/dashboard/index.vue",
+    "chunkName": "pages/dashboard/index"
   },
   {
     "name": "ems",
     "path": "/ems",
-    "component": "/var/www/html/projects/frontend-boilerplate/pages/ems/index.vue",
-    "chunkName": "pages/ems/index",
-    "_name": "_3ea21858"
+    "component": "/var/www/html/projects/enterprise/dukapal/frontend/frontend-service/pages/ems/index.vue",
+    "chunkName": "pages/ems/index"
   },
   {
     "name": "lms",
     "path": "/lms",
-    "component": "/var/www/html/projects/frontend-boilerplate/pages/lms/index.vue",
-    "chunkName": "pages/lms/index",
-    "_name": "_6644215b"
+    "component": "/var/www/html/projects/enterprise/dukapal/frontend/frontend-service/pages/lms/index.vue",
+    "chunkName": "pages/lms/index"
   },
   {
     "name": "dashboard-v1",
     "path": "/dashboard/v1",
-    "component": "/var/www/html/projects/frontend-boilerplate/pages/dashboard/v1.vue",
-    "chunkName": "pages/dashboard/v1",
-    "_name": "_704c3200"
+    "component": "/var/www/html/projects/enterprise/dukapal/frontend/frontend-service/pages/dashboard/v1.vue",
+    "chunkName": "pages/dashboard/v1"
   },
   {
     "name": "ems-create",
     "path": "/ems/create",
-    "component": "/var/www/html/projects/frontend-boilerplate/pages/ems/create.vue",
-    "chunkName": "pages/ems/create",
-    "_name": "_5ce3d16a"
+    "component": "/var/www/html/projects/enterprise/dukapal/frontend/frontend-service/pages/ems/create.vue",
+    "chunkName": "pages/ems/create"
   },
   {
     "name": "lms-create",
     "path": "/lms/create",
-    "component": "/var/www/html/projects/frontend-boilerplate/pages/lms/create.vue",
-    "chunkName": "pages/lms/create",
-    "_name": "_ec17567a"
+    "component": "/var/www/html/projects/enterprise/dukapal/frontend/frontend-service/pages/lms/create.vue",
+    "chunkName": "pages/lms/create"
   },
   {
     "name": "ems-system_presets-countries",
     "path": "/ems/system_presets/countries",
-    "component": "/var/www/html/projects/frontend-boilerplate/pages/ems/system_presets/countries.vue",
-    "chunkName": "pages/ems/system_presets/countries",
-    "_name": "_8ffd4392"
+    "component": "/var/www/html/projects/enterprise/dukapal/frontend/frontend-service/pages/ems/system_presets/countries.vue",
+    "chunkName": "pages/ems/system_presets/countries"
   },
   {
     "name": "ems-system_presets-department_heads",
     "path": "/ems/system_presets/department_heads",
-    "component": "/var/www/html/projects/frontend-boilerplate/pages/ems/system_presets/department_heads.vue",
-    "chunkName": "pages/ems/system_presets/department_heads",
-    "_name": "_a2e3749a"
+    "component": "/var/www/html/projects/enterprise/dukapal/frontend/frontend-service/pages/ems/system_presets/department_heads.vue",
+    "chunkName": "pages/ems/system_presets/department_heads"
   },
   {
     "name": "ems-system_presets-departments",
     "path": "/ems/system_presets/departments",
-    "component": "/var/www/html/projects/frontend-boilerplate/pages/ems/system_presets/departments.vue",
-    "chunkName": "pages/ems/system_presets/departments",
-    "_name": "_937684b8"
+    "component": "/var/www/html/projects/enterprise/dukapal/frontend/frontend-service/pages/ems/system_presets/departments.vue",
+    "chunkName": "pages/ems/system_presets/departments"
   },
   {
     "name": "ems-system_presets-designition",
     "path": "/ems/system_presets/designition",
-    "component": "/var/www/html/projects/frontend-boilerplate/pages/ems/system_presets/designition.vue",
-    "chunkName": "pages/ems/system_presets/designition",
-    "_name": "_53a0b342"
+    "component": "/var/www/html/projects/enterprise/dukapal/frontend/frontend-service/pages/ems/system_presets/designition.vue",
+    "chunkName": "pages/ems/system_presets/designition"
   },
   {
     "name": "ems-system_presets-employment_types",
     "path": "/ems/system_presets/employment_types",
-    "component": "/var/www/html/projects/frontend-boilerplate/pages/ems/system_presets/employment_types.vue",
-    "chunkName": "pages/ems/system_presets/employment_types",
-    "_name": "_793b969a"
+    "component": "/var/www/html/projects/enterprise/dukapal/frontend/frontend-service/pages/ems/system_presets/employment_types.vue",
+    "chunkName": "pages/ems/system_presets/employment_types"
   },
   {
     "name": "ems-system_presets-genders",
     "path": "/ems/system_presets/genders",
-    "component": "/var/www/html/projects/frontend-boilerplate/pages/ems/system_presets/genders.vue",
-    "chunkName": "pages/ems/system_presets/genders",
-    "_name": "_1ae1add6"
+    "component": "/var/www/html/projects/enterprise/dukapal/frontend/frontend-service/pages/ems/system_presets/genders.vue",
+    "chunkName": "pages/ems/system_presets/genders"
   },
   {
     "name": "ems-system_presets-personal_identification_types",
     "path": "/ems/system_presets/personal_identification_types",
-    "component": "/var/www/html/projects/frontend-boilerplate/pages/ems/system_presets/personal_identification_types.vue",
-    "chunkName": "pages/ems/system_presets/personal_identification_types",
-    "_name": "_2d94e2ec"
+    "component": "/var/www/html/projects/enterprise/dukapal/frontend/frontend-service/pages/ems/system_presets/personal_identification_types.vue",
+    "chunkName": "pages/ems/system_presets/personal_identification_types"
   },
   {
     "name": "ems-system_presets-relationship_status",
     "path": "/ems/system_presets/relationship_status",
-    "component": "/var/www/html/projects/frontend-boilerplate/pages/ems/system_presets/relationship_status.vue",
-    "chunkName": "pages/ems/system_presets/relationship_status",
-    "_name": "_afdab1c8"
+    "component": "/var/www/html/projects/enterprise/dukapal/frontend/frontend-service/pages/ems/system_presets/relationship_status.vue",
+    "chunkName": "pages/ems/system_presets/relationship_status"
   },
   {
     "name": "ems-system_presets-section_heads",
     "path": "/ems/system_presets/section_heads",
-    "component": "/var/www/html/projects/frontend-boilerplate/pages/ems/system_presets/section_heads.vue",
-    "chunkName": "pages/ems/system_presets/section_heads",
-    "_name": "_e96dc788"
+    "component": "/var/www/html/projects/enterprise/dukapal/frontend/frontend-service/pages/ems/system_presets/section_heads.vue",
+    "chunkName": "pages/ems/system_presets/section_heads"
   },
   {
     "name": "ems-system_presets-sections",
     "path": "/ems/system_presets/sections",
-    "component": "/var/www/html/projects/frontend-boilerplate/pages/ems/system_presets/sections.vue",
-    "chunkName": "pages/ems/system_presets/sections",
-    "_name": "_7cbe357b"
+    "component": "/var/www/html/projects/enterprise/dukapal/frontend/frontend-service/pages/ems/system_presets/sections.vue",
+    "chunkName": "pages/ems/system_presets/sections"
   },
   {
     "name": "iam-auth-account",
     "path": "/iam/auth/account",
-    "component": "/var/www/html/projects/frontend-boilerplate/pages/iam/auth/account.vue",
-    "chunkName": "pages/iam/auth/account",
-    "_name": "_071f112c"
+    "component": "/var/www/html/projects/enterprise/dukapal/frontend/frontend-service/pages/iam/auth/account.vue",
+    "chunkName": "pages/iam/auth/account"
   },
   {
     "name": "iam-auth-login",
     "path": "/iam/auth/login",
-    "component": "/var/www/html/projects/frontend-boilerplate/pages/iam/auth/login.vue",
-    "chunkName": "pages/iam/auth/login",
-    "_name": "_9cb83834"
+    "component": "/var/www/html/projects/enterprise/dukapal/frontend/frontend-service/pages/iam/auth/login.vue",
+    "chunkName": "pages/iam/auth/login"
   },
   {
     "name": "lms-system_presets-holiday_lists",
     "path": "/lms/system_presets/holiday_lists",
-    "component": "/var/www/html/projects/frontend-boilerplate/pages/lms/system_presets/holiday_lists/index.vue",
-    "chunkName": "pages/lms/system_presets/holiday_lists/index",
-    "_name": "_7d42f78d"
+    "component": "/var/www/html/projects/enterprise/dukapal/frontend/frontend-service/pages/lms/system_presets/holiday_lists/index.vue",
+    "chunkName": "pages/lms/system_presets/holiday_lists/index"
   },
   {
     "name": "lms-system_presets-holidays",
     "path": "/lms/system_presets/holidays",
-    "component": "/var/www/html/projects/frontend-boilerplate/pages/lms/system_presets/holidays/index.vue",
-    "chunkName": "pages/lms/system_presets/holidays/index",
-    "_name": "_628f861c"
+    "component": "/var/www/html/projects/enterprise/dukapal/frontend/frontend-service/pages/lms/system_presets/holidays/index.vue",
+    "chunkName": "pages/lms/system_presets/holidays/index"
   },
   {
     "name": "lms-system_presets-leave_types",
     "path": "/lms/system_presets/leave_types",
-    "component": "/var/www/html/projects/frontend-boilerplate/pages/lms/system_presets/leave_types/index.vue",
-    "chunkName": "pages/lms/system_presets/leave_types/index",
-    "_name": "_af87ce60"
+    "component": "/var/www/html/projects/enterprise/dukapal/frontend/frontend-service/pages/lms/system_presets/leave_types/index.vue",
+    "chunkName": "pages/lms/system_presets/leave_types/index"
   },
   {
     "name": "lms-system_presets-holiday_lists-create",
     "path": "/lms/system_presets/holiday_lists/create",
-    "component": "/var/www/html/projects/frontend-boilerplate/pages/lms/system_presets/holiday_lists/create.vue",
-    "chunkName": "pages/lms/system_presets/holiday_lists/create",
-    "_name": "_52d044d1"
+    "component": "/var/www/html/projects/enterprise/dukapal/frontend/frontend-service/pages/lms/system_presets/holiday_lists/create.vue",
+    "chunkName": "pages/lms/system_presets/holiday_lists/create"
   },
   {
     "name": "lms-system_presets-holidays-create",
     "path": "/lms/system_presets/holidays/create",
-    "component": "/var/www/html/projects/frontend-boilerplate/pages/lms/system_presets/holidays/create.vue",
-    "chunkName": "pages/lms/system_presets/holidays/create",
-    "_name": "_3003ac0c"
+    "component": "/var/www/html/projects/enterprise/dukapal/frontend/frontend-service/pages/lms/system_presets/holidays/create.vue",
+    "chunkName": "pages/lms/system_presets/holidays/create"
   },
   {
     "name": "lms-system_presets-leave_types-create",
     "path": "/lms/system_presets/leave_types/create",
-    "component": "/var/www/html/projects/frontend-boilerplate/pages/lms/system_presets/leave_types/create.vue",
-    "chunkName": "pages/lms/system_presets/leave_types/create",
-    "_name": "_f2096824"
+    "component": "/var/www/html/projects/enterprise/dukapal/frontend/frontend-service/pages/lms/system_presets/leave_types/create.vue",
+    "chunkName": "pages/lms/system_presets/leave_types/create"
   },
   {
     "name": "lms-system_presets-holiday_lists-update-id",
     "path": "/lms/system_presets/holiday_lists/update/:id?",
-    "component": "/var/www/html/projects/frontend-boilerplate/pages/lms/system_presets/holiday_lists/update/_id.vue",
-    "chunkName": "pages/lms/system_presets/holiday_lists/update/_id",
-    "_name": "_779f866e"
+    "component": "/var/www/html/projects/enterprise/dukapal/frontend/frontend-service/pages/lms/system_presets/holiday_lists/update/_id.vue",
+    "chunkName": "pages/lms/system_presets/holiday_lists/update/_id"
   },
   {
     "name": "lms-system_presets-holiday_lists-view-id",
     "path": "/lms/system_presets/holiday_lists/view/:id?",
-    "component": "/var/www/html/projects/frontend-boilerplate/pages/lms/system_presets/holiday_lists/view/_id.vue",
-    "chunkName": "pages/lms/system_presets/holiday_lists/view/_id",
-    "_name": "_1a52ade5"
+    "component": "/var/www/html/projects/enterprise/dukapal/frontend/frontend-service/pages/lms/system_presets/holiday_lists/view/_id.vue",
+    "chunkName": "pages/lms/system_presets/holiday_lists/view/_id"
   },
   {
     "name": "lms-system_presets-holidays-update-id",
     "path": "/lms/system_presets/holidays/update/:id?",
-    "component": "/var/www/html/projects/frontend-boilerplate/pages/lms/system_presets/holidays/update/_id.vue",
-    "chunkName": "pages/lms/system_presets/holidays/update/_id",
-    "_name": "_7e978e84"
+    "component": "/var/www/html/projects/enterprise/dukapal/frontend/frontend-service/pages/lms/system_presets/holidays/update/_id.vue",
+    "chunkName": "pages/lms/system_presets/holidays/update/_id"
   },
   {
     "name": "lms-system_presets-holidays-view-id",
     "path": "/lms/system_presets/holidays/view/:id?",
-    "component": "/var/www/html/projects/frontend-boilerplate/pages/lms/system_presets/holidays/view/_id.vue",
-    "chunkName": "pages/lms/system_presets/holidays/view/_id",
-    "_name": "_78493260"
+    "component": "/var/www/html/projects/enterprise/dukapal/frontend/frontend-service/pages/lms/system_presets/holidays/view/_id.vue",
+    "chunkName": "pages/lms/system_presets/holidays/view/_id"
   },
   {
     "name": "lms-system_presets-leave_types-update-id",
     "path": "/lms/system_presets/leave_types/update/:id?",
-    "component": "/var/www/html/projects/frontend-boilerplate/pages/lms/system_presets/leave_types/update/_id.vue",
-    "chunkName": "pages/lms/system_presets/leave_types/update/_id",
-    "_name": "_4f186d66"
+    "component": "/var/www/html/projects/enterprise/dukapal/frontend/frontend-service/pages/lms/system_presets/leave_types/update/_id.vue",
+    "chunkName": "pages/lms/system_presets/leave_types/update/_id"
   },
   {
     "name": "lms-system_presets-leave_types-view-id",
     "path": "/lms/system_presets/leave_types/view/:id?",
-    "component": "/var/www/html/projects/frontend-boilerplate/pages/lms/system_presets/leave_types/view/_id.vue",
-    "chunkName": "pages/lms/system_presets/leave_types/view/_id",
-    "_name": "_204f3c7c"
+    "component": "/var/www/html/projects/enterprise/dukapal/frontend/frontend-service/pages/lms/system_presets/leave_types/view/_id.vue",
+    "chunkName": "pages/lms/system_presets/leave_types/view/_id"
   },
   {
     "name": "ems-update-id",
     "path": "/ems/update/:id?",
-    "component": "/var/www/html/projects/frontend-boilerplate/pages/ems/update/_id.vue",
-    "chunkName": "pages/ems/update/_id",
-    "_name": "_4a09d4e2"
+    "component": "/var/www/html/projects/enterprise/dukapal/frontend/frontend-service/pages/ems/update/_id.vue",
+    "chunkName": "pages/ems/update/_id"
   },
   {
     "name": "ems-view-id",
     "path": "/ems/view/:id?",
-    "component": "/var/www/html/projects/frontend-boilerplate/pages/ems/view/_id.vue",
-    "chunkName": "pages/ems/view/_id",
-    "_name": "_24950f84"
+    "component": "/var/www/html/projects/enterprise/dukapal/frontend/frontend-service/pages/ems/view/_id.vue",
+    "chunkName": "pages/ems/view/_id"
   },
   {
     "name": "index",
     "path": "/",
-    "component": "/var/www/html/projects/frontend-boilerplate/pages/index.vue",
-    "chunkName": "pages/index",
-    "_name": "_72d3ef18"
+    "component": "/var/www/html/projects/enterprise/dukapal/frontend/frontend-service/pages/index.vue",
+    "chunkName": "pages/index"
   }
 ]

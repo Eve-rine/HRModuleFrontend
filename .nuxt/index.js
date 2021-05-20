@@ -13,16 +13,16 @@ import { createStore } from './store.js'
 
 /* Plugins */
 
-import nuxt_plugin_templatesplugin30764206_5e762ed6 from 'nuxt_plugin_templatesplugin30764206_5e762ed6' // Source: ./templates.plugin.30764206.js (mode: 'all')
-import nuxt_plugin_workbox_1fc6fd22 from 'nuxt_plugin_workbox_1fc6fd22' // Source: ./workbox.js (mode: 'client')
-import nuxt_plugin_metaplugin_0dea0235 from 'nuxt_plugin_metaplugin_0dea0235' // Source: ./pwa/meta.plugin.js (mode: 'all')
-import nuxt_plugin_axios_03e4d186 from 'nuxt_plugin_axios_03e4d186' // Source: ./axios.js (mode: 'all')
+import nuxt_plugin_templatesplugin148ac366_8c53a0ec from 'nuxt_plugin_templatesplugin148ac366_8c53a0ec' // Source: ./templates.plugin.148ac366.js (mode: 'all')
+import nuxt_plugin_workbox_215ca85c from 'nuxt_plugin_workbox_215ca85c' // Source: ./workbox.js (mode: 'client')
+import nuxt_plugin_metaplugin_25f300e5 from 'nuxt_plugin_metaplugin_25f300e5' // Source: ./pwa/meta.plugin.js (mode: 'all')
+import nuxt_plugin_axios_6aab6c36 from 'nuxt_plugin_axios_6aab6c36' // Source: ./axios.js (mode: 'all')
 import nuxt_plugin_validation_16b6b817 from 'nuxt_plugin_validation_16b6b817' // Source: ../plugins/mixins/validation.js (mode: 'all')
 import nuxt_plugin_axios_5659d192 from 'nuxt_plugin_axios_5659d192' // Source: ../plugins/axios.js (mode: 'all')
 import nuxt_plugin_componentsglobal_65822712 from 'nuxt_plugin_componentsglobal_65822712' // Source: ../plugins/components.global.js (mode: 'all')
 import nuxt_plugin_userInterface_347e81b0 from 'nuxt_plugin_userInterface_347e81b0' // Source: ../plugins/mixins/userInterface.js (mode: 'all')
 import nuxt_plugin_toast_7d528cd2 from 'nuxt_plugin_toast_7d528cd2' // Source: ../plugins/mixins/toast.js (mode: 'all')
-import nuxt_plugin_auth_f008e22c from 'nuxt_plugin_auth_f008e22c' // Source: ./auth.js (mode: 'all')
+import nuxt_plugin_auth_54c2438c from 'nuxt_plugin_auth_54c2438c' // Source: ./auth.js (mode: 'all')
 
 // Component: <ClientOnly>
 Vue.component(ClientOnly.name, ClientOnly)
@@ -51,7 +51,11 @@ Vue.component(Nuxt.name, Nuxt)
 
 Object.defineProperty(Vue.prototype, '$nuxt', {
   get() {
-    return this.$root.$options.$nuxt
+    const globalNuxt = this.$root.$options.$nuxt
+    if (process.client && !globalNuxt && typeof window !== 'undefined') {
+      return window.$nuxt
+    }
+    return globalNuxt
   },
   configurable: true
 })
@@ -212,20 +216,20 @@ async function createApp(ssrContext, config = {}) {
   }
   // Plugin execution
 
-  if (typeof nuxt_plugin_templatesplugin30764206_5e762ed6 === 'function') {
-    await nuxt_plugin_templatesplugin30764206_5e762ed6(app.context, inject)
+  if (typeof nuxt_plugin_templatesplugin148ac366_8c53a0ec === 'function') {
+    await nuxt_plugin_templatesplugin148ac366_8c53a0ec(app.context, inject)
   }
 
-  if (process.client && typeof nuxt_plugin_workbox_1fc6fd22 === 'function') {
-    await nuxt_plugin_workbox_1fc6fd22(app.context, inject)
+  if (process.client && typeof nuxt_plugin_workbox_215ca85c === 'function') {
+    await nuxt_plugin_workbox_215ca85c(app.context, inject)
   }
 
-  if (typeof nuxt_plugin_metaplugin_0dea0235 === 'function') {
-    await nuxt_plugin_metaplugin_0dea0235(app.context, inject)
+  if (typeof nuxt_plugin_metaplugin_25f300e5 === 'function') {
+    await nuxt_plugin_metaplugin_25f300e5(app.context, inject)
   }
 
-  if (typeof nuxt_plugin_axios_03e4d186 === 'function') {
-    await nuxt_plugin_axios_03e4d186(app.context, inject)
+  if (typeof nuxt_plugin_axios_6aab6c36 === 'function') {
+    await nuxt_plugin_axios_6aab6c36(app.context, inject)
   }
 
   if (typeof nuxt_plugin_validation_16b6b817 === 'function') {
@@ -248,8 +252,8 @@ async function createApp(ssrContext, config = {}) {
     await nuxt_plugin_toast_7d528cd2(app.context, inject)
   }
 
-  if (typeof nuxt_plugin_auth_f008e22c === 'function') {
-    await nuxt_plugin_auth_f008e22c(app.context, inject)
+  if (typeof nuxt_plugin_auth_54c2438c === 'function') {
+    await nuxt_plugin_auth_54c2438c(app.context, inject)
   }
 
   // Lock enablePreview in context
@@ -259,26 +263,26 @@ async function createApp(ssrContext, config = {}) {
     }
   }
 
-  // If server-side, wait for async component to be resolved first
-  if (process.server && ssrContext && ssrContext.url) {
-    await new Promise((resolve, reject) => {
-      router.push(ssrContext.url, resolve, (err) => {
-        // https://github.com/vuejs/vue-router/blob/v3.4.3/src/util/errors.js
-        if (!err._isRouter) return reject(err)
-        if (err.type !== 2 /* NavigationFailureType.redirected */) return resolve()
+  // Wait for async component to be resolved first
+  await new Promise((resolve, reject) => {
+    router.replace(app.context.route.fullPath, resolve, (err) => {
+      // https://github.com/vuejs/vue-router/blob/v3.4.3/src/util/errors.js
+      if (!err._isRouter) return reject(err)
+      if (err.type !== 2 /* NavigationFailureType.redirected */) return resolve()
 
-        // navigated to a different route in router guard
-        const unregister = router.afterEach(async (to, from) => {
+      // navigated to a different route in router guard
+      const unregister = router.afterEach(async (to, from) => {
+        if (process.server && ssrContext && ssrContext.url) {
           ssrContext.url = to.fullPath
-          app.context.route = await getRouteData(to)
-          app.context.params = to.params || {}
-          app.context.query = to.query || {}
-          unregister()
-          resolve()
-        })
+        }
+        app.context.route = await getRouteData(to)
+        app.context.params = to.params || {}
+        app.context.query = to.query || {}
+        unregister()
+        resolve()
       })
     })
-  }
+  })
 
   return {
     store,

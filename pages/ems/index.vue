@@ -108,7 +108,6 @@ import DataTable from "@andresouzaabreu/vue-data-table";
 Vue.component("DataTable", DataTable);
 // import "bootstrap/dist/css/bootstrap.min.css";
 import "@andresouzaabreu/vue-data-table/dist/DataTable.css";
-import Vuetable from 'vuetable-2'
 import 'vue-good-table/dist/vue-good-table.css'
 
 export default {

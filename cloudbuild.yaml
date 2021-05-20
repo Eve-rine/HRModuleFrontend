@@ -1,0 +1,28 @@
+steps:
+
+- id: 'Build application container'
+  name: 'gcr.io/cloud-builders/docker'
+  args: [
+    'build',
+    '--build-arg',
+    'APP_ENV=prod',
+    '--tag=gcr.io/$PROJECT_ID/frontend-service',
+    '.',
+  ]
+  waitFor: ['-']
+
+- id: 'Push application to GCR'
+  name: 'gcr.io/cloud-builders/docker'
+  args: ['push', 'gcr.io/$PROJECT_ID/frontend-service:latest']
+  waitFor: ['Build application container']
+
+- id: 'Deploy container image to GKE'
+  name: 'gcr.io/cloud-builders/gke-deploy'
+  args: [
+   'run',
+   '--filename=./kubernetes/kubernetes.yaml',
+   '--image=gcr.io/$PROJECT_ID/frontend-service:latest',
+   '--location=us-central1-a',
+   '--cluster=saas-erp'
+  ] 
+  waitFor: ['Push application to GCR'] 

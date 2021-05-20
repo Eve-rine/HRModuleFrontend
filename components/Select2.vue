@@ -12,7 +12,6 @@
 </template>
 
 <script>
-import { scValidation } from '~/assets/js/utils';
 
 require('~/plugins/jquery');
 require('select2');
@@ -65,37 +64,6 @@ export default {
 	data: () => ({
 		select2: null,
 	}),
-	computed: {
-		userSettings () {
-			var config = {};
-			const self = this;
-			Object.keys(this.settings).forEach(function (k) {
-				if (k === 'createTag' && self.settings[k] === 'emailAddress') {
-					config[k] = function (params) { return !scValidation.emailAddress(params.term) ? null : { id: params.term, text: params.term } };
-				}
-				// country flags
-				else if (k === 'templateResult' && self.settings[k] === 'formatCountryResult') {
-					config[k] = function (country) {
-						if (!country.id) { return country.text; }
-						return $('<span class="select2-search__flags"><span class="flag flag-' + country.id.toLowerCase() + '"></span><span>' + country.text + '</span>');
-					}
-				}
-				else if (k === 'templateSelection' && self.settings[k] === 'formatCountrySelection') {
-					config[k] = function (data, container) {
-						if (!data.id) { return data.text; }
-						return $('<span class="select2-selection__flag"><span class="flag flag-' + data.id.toLowerCase() + '"></span><span>' + data.text + '</span>');
-					}
-				}
-				else {
-					config[k] = self.settings[k]
-				}
-			});
-			// if(!self.oldSettings || (JSON.stringify(this.oldSettings) !== JSON.stringify(config))) {
-			// 	self.oldSettings = config;
-			// }
-			return config
-		}
-	},
 	watch: {
 		options (val) {
 			this.setOption(val);
