@@ -80,10 +80,10 @@ export default {
 	head () { return { 'title': 'DukaPal - Login'	}	},
 	computed: {
 		appLogo () {
-			return require('~/assets/img/logo_alt.png');
+			return require('~/assets/img/dukapal.png');
 		},
 		appLogoLight () {
-			return require('~/assets/img/logo.png');
+			return require('~/assets/img/dukapal.png');
 		}
 	},
 	// methods: {

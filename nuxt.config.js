@@ -72,7 +72,7 @@ module.exports = {
 		{ src: '~/plugins/axios.js' },
 		{ src: '~/plugins/components.global.js' },
 		{ src: '~/plugins/mixins/userInterface.js' },
-		{src: '~/plugins/mixins/toast.js'}
+		{src: '~/plugins/mixins/toast.js'},
 	],
 	  auth: {
 		cookie: {
@@ -175,7 +175,7 @@ module.exports = {
 		babel: {
 			plugins: [
 				"@babel/plugin-syntax-dynamic-import",
-				"@babel/plugin-transform-spread"
+				"@babel/plugin-transform-spread",
 			],
 			ignore: [
 				"node_modules",

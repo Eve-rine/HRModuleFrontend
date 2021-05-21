@@ -7,17 +7,13 @@
 						Department Name
 					</label>
 					<div class="uk-form-controls">
-						<ScInput v-model="	department_details.department_name" name="department_name" mode="outline" :error-state="false">													
+						<ScInput v-model="	department_details.department_name" name="department_name" mode="outline" :error-state="errors.department_name ? true : false">													
 						</ScInput>
-					</div>
-				</div>
-				<div class="uk-width-1-1">
-					<label class="uk-form-label">
-						Department Head
-					</label>
-					<div class="uk-form-controls">
-						<ScInput v-model="	department_details.department_head" name="department_head" mode="outline" :error-state="false">													
-						</ScInput>
+						<ul class="sc-vue-errors">
+							<li v-if="errors.department_name">
+								{{ errors.department_name[0] }}
+							</li>
+						</ul>
 					</div>
 				</div>
 				<div class="uk-width-1-1">
@@ -25,8 +21,13 @@
 						Department Abbreviation
 					</label>
 					<div class="uk-form-controls">
-						<ScInput v-model="	department_details.department_abbreviation" name="department_abbreviation" mode="outline" :error-state="false">													
+						<ScInput v-model="	department_details.department_abbreviation" name="department_abbreviation" mode="outline" :error-state="errors.department_abbreviation ? true : false">													
 						</ScInput>
+						<ul class="sc-vue-errors">
+							<li v-if="errors.department_abbreviation">
+								{{ errors.department_abbreviation[0] }}
+							</li>
+						</ul>
 					</div>
 				</div>
 				<div class="uk-width-1-1">
@@ -34,8 +35,13 @@
 						Department Description
 					</label>
 					<div class="uk-form-controls">
-						<ScInput v-model="	department_details.department_description" name="department_description" mode="outline" :error-state="false">													
+						<ScInput v-model="	department_details.department_description" name="department_description" mode="outline" :error-state="errors.department_description ? true : false">													
 						</ScInput>
+						<ul class="sc-vue-errors">
+							<li v-if="errors.department_description">
+								{{ errors.department_description[0] }}
+							</li>
+						</ul>
 					</div>
 				</div>
 			</div>
@@ -78,14 +84,13 @@ export default {
 	data: () => ({
 		department_details:{
 	         department_name:'',
-		    department_head:'',
 		    department_description:'',
 		    department_abbreviation:''
 		}
 	}),
 	head () {
 		return {
-			'title': 'Employee | Departments'
+			'title': 'EMS | Departments'
 		}
 	},
 	methods: {

@@ -52,14 +52,14 @@
 										class="elbutton"
 										size="mini"
 										uk-tooltip="Edit"
-										@click="handleEditRow(scope.row.gender_id,null)"
+										@click="viewGender(scope.row.gender_id)"
 									>
 										<i class="el-icon-edit" />
 									</el-button>
 									<el-button type="danger" size="mini" uk-tooltip="Delete" @click="deleteGender(scope.row.gender_id)">
 										<i class="el-icon-delete" />
 									</el-button>
-									<el-button type="primary" size="mini" uk-tooltip="View" @click="handleSaveRow(scope.$index)">
+									<el-button type="primary" size="mini" uk-tooltip="View" @click="viewRecord(scope.row.gender_id)">
 										<i class="el-icon-view" />
 									</el-button>
 								</el-button-group>
@@ -75,9 +75,9 @@
 					/>
 				</ScCardBody>
 			</ScCard>
-			<div id="modal-gender" class="uk-flex-middle" uk-modal="bg-close:false">
+			<div id="modal-gender" class="uk-flex-middle" uk-modal="bg-close:false" container="false">
 				<div class="uk-modal-dialog uk-width-1-4@l uk-margin-auto uk-modal-body">
-					<button class="uk-modal-close-default" data-uk-close></button>
+					<button class="uk-modal-close-default" data-uk-close @click.prevent="clearForm($event)"></button>
 					<h2 class="uk-modal-title">
 						Add Gender
 					</h2>
@@ -85,22 +85,37 @@
 						<GenderForm button-text="Add"
 							:submit-form="addGender"
 							:has-submit-button="true"
-							:get-record="handleEditRow"
+							:gender-details="gender_details"
 						/>
 					</client-only>
 				</div>
 			</div>
 			<div id="modal-view" class="uk-flex-middle" uk-modal="bg-close:false">
 				<div class="uk-modal-dialog uk-width-1-4@l uk-margin-auto uk-modal-body">
-					<button class="uk-modal-close-default" data-uk-close></button>
+					<button class="uk-modal-close-default" data-uk-close @click.prevent="clearForm($event)"></button>
+					<h2 class="uk-modal-title">
+						Gender
+					</h2>
+					<client-only>
+						<GenderForm button-text="Add"
+							:has-submit-button="false"
+							:get-record="viewRecord"
+							:gender-details="gender_details"
+						/>
+					</client-only>
+				</div>
+			</div>
+			<div id="modal-edit" class="uk-flex-middle" uk-modal="bg-close:false">
+				<div class="uk-modal-dialog uk-width-1-4@l uk-margin-auto uk-modal-body">
+					<button class="uk-modal-close-default" data-uk-close @click.prevent="clearForm($event)"></button>
 					<h2 class="uk-modal-title">
 						Edit Gender
 					</h2>
 					<client-only>
-						<GenderForm button-text="Add"
-							:submit-form="addGender"
+						<GenderForm button-text="EDIT"
+							:submit-form="editRecord"
 							:has-submit-button="true"
-							:get-record="handleEditRow"
+							:gender-details="gender_details"
 						/>
 					</client-only>
 				</div>
@@ -132,7 +147,11 @@ export default {
 		pages:0,
 		perPage:10,
 		currentPage:1,
-		showPagination:false
+		showPagination:false,
+		gender_details:{
+			gender:'',
+			gender_id:''	
+		}
 	}),
 	head () {
 		return {
@@ -163,9 +182,9 @@ export default {
 				.catch(error => {
 				})
 		},
-		async addGender (gender_details) {
+		async addGender () {
 			let formData = new FormData();
-			formData.append('gender', gender_details.gender);
+			formData.append('gender', this.gender_details.gender);
 			try {
 				await this.$axios.post( 'api/gender',
 					formData,
@@ -175,8 +194,10 @@ export default {
 						},
 					},
 				).then(response=>{
-					this.$router.push('/lms')
-								
+					UIkit.modal('#modal-gender').hide()	
+					this.$store.dispatch('modules/notificationModule/setToast', response.data.toast);
+					// UIkit.modal('#modal-gender').hide()	
+					this.clearForm()					
 			
 				}) .catch(function (response) {
 
@@ -185,6 +206,13 @@ export default {
 
 			}
 				
+		},
+		async clearForm () {
+			UIkit.modal('#modal-gender').hide()
+			UIkit.modal('#modal-view').hide()
+			UIkit.modal('#modal-edit').hide()
+			this.$store.dispatch('modules/validationModule/clearErrors');
+			this.gender_details.gender=""
 		},
 		async Search (){
 			const headers = {'x-service': 'ems-svc'};
@@ -196,30 +224,64 @@ export default {
 				})
 		},
 
-		handleSaveRow (index) {
-			this.genders[index].edited = false
+		async editRecord () {
+			let formData = new FormData();
+			formData.append('gender', this.gender_details.gender);
+			try {
+				await this.$axios.put(
+					`api/gender/${id}`, formData,
+					{
+						headers: {
+							'x-service': 'ems-svc'
+						},
+					},
+				)
+					.then(response =>{
+						this.gender_details.gender=response.data.data.gender	
+					})
+					.catch(error => {
+						return
+					})
+			} catch (err) {
+			}
 		},
-		async handleEditRow (id, details) {
+		
+
+		async viewRecord (id) {
+			const headers = {'x-service': 'ems-svc'};
+			try {
+				await this.$axios.get(
+					`api/gender/${id}`, { headers }
+				)
+					.then(response =>{
+						UIkit.modal('#modal-view').show()
+						this.gender_details.gender=response.data.data.gender	
+					})
+					.catch(error => {
+
+					})
+			} catch (error) {
+			}
+		},
+
+		async viewGender (id) {
 			const headers = {'x-service': 'ems-svc'};
 			try {
 				await this.$axios.get(
 					`api/gender/${id}`, { headers }
 				)
 					.then(res =>{
-						UIkit.modal('#modal-view').show()
-						details=res.data.data.gender
-						console.log(details)
-	
+						UIkit.modal('#modal-edit').show()
+						this.gender_details.gender=res.data.data.gender	
 					})
-					.catch(err => {
+					.catch(error => {
 
 					})
-			} catch (err) {
+			} catch (error) {
 			}
 		},
-		async deleteGender ( id) {
-	
-							          Swal({
+		async deleteGender ( id) {	
+		 Swal({
 				title: 'Are you sure you want to delete this Record?',
 				showCancelButton: true,
 				confirmButtonText: 'Yes, Delete!', 
@@ -239,7 +301,7 @@ export default {
 				else {
 					Swal(
 						'Cancelled',
-						'Batch not closed ',
+						'Record not Deleted',
 						'error'
 					)					
 				}

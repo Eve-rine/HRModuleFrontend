@@ -62,6 +62,7 @@
 		"jquery.steps": "^1.1.1",
 		"js-cookie": "^2.2.1",
 		"lodash": "^4.17.20",
+		"maz-ui": "^2.3.9",
 		"node-sass": "^5.0.0",
 		"node-waves": "^0.7.6",
 		"numeral": "^2.0.6",

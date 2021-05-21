@@ -2,20 +2,22 @@ export default function ({$axios, store}){
 	$axios.onError(error => {
 		if(error.response.status === 422){
 			store.dispatch('modules/validationModule/setErrors', error.response.data.errors);
-			store.dispatch('modules/notificationModule/setToast',  error.response.data);
+			store.dispatch('modules/notificationModule/setToast', error.response.data.errors);
+			
 		}
 		return Promise.reject(error);
 	});
 	$axios.onRequest(()=>{
 		store.dispatch('modules/validationModule/clearErrors');
 	});
-	$axios.onResponse(response => {
-		if(response.status === 201){
-			store.dispatch('modules/notificationModule/setToast', response.data.toast);
-			console.log('Oh no it returned a 404')
-		}
-		return response;
-	});
+	// $axios.onResponse(response => {
+	// 	if(response.status === 201){
+	// 		store.dispatch('modules/notificationModule/setToast', response.data.toast);
+
+	// 	}
+	// 	return response;
+	// });
+	
 	// // Add a response interceptor
 	// const resInterceptor = axios.interceptors.response.use(function (response) {
 	// // Do something with response data like console.log, change header, or as we did here just added a conditional behaviour, to change the route or pop up an alert box, based on the reponse status  

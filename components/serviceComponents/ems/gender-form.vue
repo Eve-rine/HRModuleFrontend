@@ -19,7 +19,7 @@
 			</div>
 		</form>
 		<div v-if="hasSubmitButton" class="uk-modal-footer uk-text-right">
-			<button class="sc-button sc-button-primary" data-uk-tooltip="Save" @click.prevent="submitForm(gender_details)">
+			<button class="sc-button sc-button-primary" data-uk-tooltip="Save" @click.prevent="submitForm()">
 				{{ buttonText }}
 			</button>
 		</div>
@@ -40,7 +40,7 @@ export default {
 		},
 		submitForm: {
 			type: Function,
-			required: true
+			required: false
 		},
 		getRecord: {
 			type: Function,
@@ -51,14 +51,24 @@ export default {
 			type:Boolean,
 			default:false
 		},
+		genderDetails:{
+			type:Object,
+			required:false
+		}
 
 	},
-	data: () => ({
-		gender_details:{
-			gender:'',
-			gender_id:''	
+	// data: () => ({
+	// 	// gender_details:{
+	// 	// 	gender:'',
+	// 	// 	gender_id:''	
+	// 	// }
+	// 	gender_details:this.genderDetails
+	// }),
+	data () {
+		return {
+			gender_details:this.genderDetails
 		}
-	}),
+	},
 	head () {
 		return {
 			'title': 'EMS | Gender'
@@ -67,7 +77,7 @@ export default {
 	computed:{
 	},
 	mounted (){
-		this.getRecord(this.gender_details.gender_id, this.gender_details)
+		// this.getRecord(this.gender_details)
 	},
 
 	methods: {

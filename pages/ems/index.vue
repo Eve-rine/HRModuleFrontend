@@ -160,7 +160,7 @@ export default {
 					this.employees = response.data.data	
 					this.totalRecords=response.data.totalCount
 					this.pages=response.data.totalCount
-					this.currentPage=1
+					this.currentPage=page
 					this.perPage=JSON.parse(response.data.pageSize)
 					if(response.data.pageCount>1){
 						this.showPagination=true

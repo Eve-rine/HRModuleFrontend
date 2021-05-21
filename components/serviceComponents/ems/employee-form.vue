@@ -158,6 +158,16 @@
 								<div class="uk-form-controls">
 									<!-- <ScInput v-model="contact_details.primary_mobile_number" mode="outline"></ScInput> -->
 									<VuePhoneNumberInput v-model="contact_details.primary_mobile_number" />
+									<!-- <MazPhoneNumberInput
+										v-model="contact_details.primary_mobile_number"
+										show-code-on-list
+										default-country-code="FR"
+										:default-phone-number="initPhoneNumberExample"
+										no-flags
+										:preferred-countries="['FR', 'BE', 'DE']"
+										size="lg"
+										@update="resultsExample = $event"
+									/> -->
 								</div>
 							</div>
 							<div class="uk-width-1-3@m">
@@ -758,6 +768,7 @@ import VuePhoneNumberInput from 'vue-phone-number-input';
 import 'vue-phone-number-input/dist/vue-phone-number-input.css';
  
 Vue.component('VuePhoneNumberInput', VuePhoneNumberInput);
+import { MazPhoneNumberInput } from 'maz-ui'
 import VueTelInput from 'vue-tel-input'
 import 'vue-tel-input/dist/vue-tel-input.css'
 
@@ -775,7 +786,8 @@ export default {
 	name: 'EmployeeForm',
 	components: {
 		ScInput,
-		Select2
+		Select2,
+		// MazPhoneNumberInput
 	},
 	  props: {
 	  	titleText: {
@@ -803,6 +815,8 @@ export default {
 
 	},
 	data: () => ({
+		    initPhoneNumberExample: '0656565656',
+		resultsExample: null,
 		responseMessage:'',
 		personal_details:{
 			first_name: '',

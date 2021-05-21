@@ -121,8 +121,29 @@ export default {
 		this.getDepartments()
 	},
 	methods: {
-		addDepartment (){
-	
+		async addDepartment (department_details) {
+			let formData = new FormData();
+			formData.append('department_name', department_details.department_name);
+			formData.append('department_abbreviation', department_details.department_abbreviation);
+			formData.append('department_description', department_details.department_description);
+			try {
+				await this.$axios.post( 'api/department',
+					formData,
+					{
+						headers: {
+							'x-service': 'ems-svc'
+						},
+					},
+				).then(response=>{
+					this.$router.push('/ems')								
+			
+				}) .catch(function (response) {
+
+				})
+			}catch{
+
+			}
+				
 		},
 		async getDepartments () {
 			const headers = {'x-service': 'ems-svc'};
