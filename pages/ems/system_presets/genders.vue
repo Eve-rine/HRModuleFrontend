@@ -135,6 +135,7 @@ import Swal from 'sweetalert2'
 locale.use(lang)
 import  GenderForm from "~/components/serviceComponents/ems/gender-form";
 import Pagination from "~/components/pagination";
+import {createButton} from "../../../plugins/helpers";
 export default {
 	components: {
 		GenderForm,
@@ -163,6 +164,7 @@ export default {
 
 	mounted () {
 		this.getGenders()
+		createButton("upddfcgvhbjncgfvhbjnkghjk", this.displayAlert, "black")
 	},
 	methods: {
 		async getGenders (page) {
@@ -178,9 +180,15 @@ export default {
 					if(response.data.pageCount>1){
 						this.showPagination=true
 					}
+					createButton("upddfcgvhbjncgfvhbjnkghjk", this.displayAlert, "black")
+					createButton("upddfcgvhbjncgfvhbjnkghjk", this.displayAlert, "black")
+					// <i class="mdi mdi-checkbox-marked-outline"></i>
 				})
 				.catch(error => {
 				})
+		},
+		displayAlert (){
+			alert('you clicked me')
 		},
 		async addGender () {
 			let formData = new FormData();

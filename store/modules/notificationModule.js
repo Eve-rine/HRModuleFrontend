@@ -11,8 +11,8 @@ const getters = {
 const mutations = {
 	SET_TOAST_MESSAGES (state, payload, status) {
 		state.toast= payload;
-		status = payload.statusCode[0];
-		UIkit.notification(payload.errors.password, status);
+		status = payload.theme;
+		UIkit.notification(payload.message, status);
 	}
 };
 

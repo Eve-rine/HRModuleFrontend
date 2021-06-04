@@ -9,4 +9,15 @@ function showNotification (text, pos, status, persistent) {
 	}
 	UIkit.notification(text, config);
 }
-export {showNotification}
+
+function createButton(context,func){
+	var button =document.createElement("input");
+	button.type="button";
+	button.value="click me"
+	context.appendChild(button)
+}
+function functi(){
+	createButton(document.body,functi)
+}
+createButton(document.body,functi)
+export {showNotification,createButton}

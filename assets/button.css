@@ -1,0 +1,18 @@
+.removeBttnClass  {
+    position: absolute;
+  top:91%;
+  left: 22.7%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  background-color: white;
+  cursor: pointer;
+  border-radius: 5px;
+color: black;
+  text-align: center;
+  border-color: lightgray;
+   height: 50px ! important;
+    width: 53px;
+    border-radius: 4px;
+      padding: 10x 17px;
+    border-width: thin
+}

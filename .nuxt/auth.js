@@ -44,21 +44,27 @@ export default function (ctx, inject) {
   // local
   $auth.registerStrategy('local', new LocalScheme($auth, {
   "token": {
-    "property": "data.token",
+    "property": "payload.token",
     "required": true,
     "type": "Bearer"
   },
   "user": {
-    "property": "data",
-    "required": true
+    "property": false,
+    "autoFetch": true
   },
   "endpoints": {
     "login": {
-      "url": "/login",
+      "headers": {
+        "x-service": "iam-svc"
+      },
+      "url": "api/login",
       "method": "post"
     },
     "user": {
-      "url": "/me",
+      "headers": {
+        "x-service": "iam-svc"
+      },
+      "url": "api/me",
       "method": "get",
       "propertyName": false
     },

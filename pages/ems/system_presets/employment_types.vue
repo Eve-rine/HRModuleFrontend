@@ -140,9 +140,7 @@ export default {
 						},
 					},
 				).then(response=>{
-					this.$router.push('/lms')
-								
-			
+					return response
 				}) .catch(function (response) {
 
 				})

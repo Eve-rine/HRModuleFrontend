@@ -101,9 +101,9 @@
 	</div>
 </template>
 <script>
-
+import createButton from "../../plugins/helpers";
 import Vue from 'vue';
-import ElementUI from 'element-ui'
+import ElementUI, { Button } from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 Vue.use(ElementUI)
 import lang from 'element-ui/lib/locale/lang/en'
@@ -133,6 +133,7 @@ export default {
 	},
 	mounted () {
 		this.getEmployees()
+		// createButton(Button)
  
 	},
 

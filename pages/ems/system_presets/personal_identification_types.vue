@@ -129,7 +129,7 @@ export default {
 						},
 					},
 				).then(response=>{
-					this.$router.push('/lms')							
+					this.$store.dispatch('modules/notificationModule/setToast', response.data.toast);						
 			
 				}) .catch(function (response) {
 

@@ -22,6 +22,10 @@ const _e96dc788 = () => interopDefault(import('../pages/ems/system_presets/secti
 const _7cbe357b = () => interopDefault(import('../pages/ems/system_presets/sections.vue' /* webpackChunkName: "pages/ems/system_presets/sections" */))
 const _071f112c = () => interopDefault(import('../pages/iam/auth/account.vue' /* webpackChunkName: "pages/iam/auth/account" */))
 const _9cb83834 = () => interopDefault(import('../pages/iam/auth/login.vue' /* webpackChunkName: "pages/iam/auth/login" */))
+const _42939e30 = () => interopDefault(import('../pages/iam/auth/loginSample.vue' /* webpackChunkName: "pages/iam/auth/loginSample" */))
+const _59314e34 = () => interopDefault(import('../pages/iam/auth/profile.vue' /* webpackChunkName: "pages/iam/auth/profile" */))
+const _34424aac = () => interopDefault(import('../pages/iam/auth/reset-password.vue' /* webpackChunkName: "pages/iam/auth/reset-password" */))
+const _619af42a = () => interopDefault(import('../pages/iam/auth/signup.vue' /* webpackChunkName: "pages/iam/auth/signup" */))
 const _7d42f78d = () => interopDefault(import('../pages/lms/system_presets/holiday_lists/index.vue' /* webpackChunkName: "pages/lms/system_presets/holiday_lists/index" */))
 const _628f861c = () => interopDefault(import('../pages/lms/system_presets/holidays/index.vue' /* webpackChunkName: "pages/lms/system_presets/holidays/index" */))
 const _af87ce60 = () => interopDefault(import('../pages/lms/system_presets/leave_types/index.vue' /* webpackChunkName: "pages/lms/system_presets/leave_types/index" */))
@@ -121,6 +125,22 @@ export const routerOptions = {
     path: "/iam/auth/login",
     component: _9cb83834,
     name: "iam-auth-login"
+  }, {
+    path: "/iam/auth/loginSample",
+    component: _42939e30,
+    name: "iam-auth-loginSample"
+  }, {
+    path: "/iam/auth/profile",
+    component: _59314e34,
+    name: "iam-auth-profile"
+  }, {
+    path: "/iam/auth/reset-password",
+    component: _34424aac,
+    name: "iam-auth-reset-password"
+  }, {
+    path: "/iam/auth/signup",
+    component: _619af42a,
+    name: "iam-auth-signup"
   }, {
     path: "/lms/system_presets/holiday_lists",
     component: _7d42f78d,

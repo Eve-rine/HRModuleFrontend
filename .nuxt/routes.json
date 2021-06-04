@@ -126,6 +126,34 @@
     "_name": "_9cb83834"
   },
   {
+    "name": "iam-auth-loginSample",
+    "path": "/iam/auth/loginSample",
+    "component": "/var/www/html/projects/frontend-boilerplate/pages/iam/auth/loginSample.vue",
+    "chunkName": "pages/iam/auth/loginSample",
+    "_name": "_42939e30"
+  },
+  {
+    "name": "iam-auth-profile",
+    "path": "/iam/auth/profile",
+    "component": "/var/www/html/projects/frontend-boilerplate/pages/iam/auth/profile.vue",
+    "chunkName": "pages/iam/auth/profile",
+    "_name": "_59314e34"
+  },
+  {
+    "name": "iam-auth-reset-password",
+    "path": "/iam/auth/reset-password",
+    "component": "/var/www/html/projects/frontend-boilerplate/pages/iam/auth/reset-password.vue",
+    "chunkName": "pages/iam/auth/reset-password",
+    "_name": "_34424aac"
+  },
+  {
+    "name": "iam-auth-signup",
+    "path": "/iam/auth/signup",
+    "component": "/var/www/html/projects/frontend-boilerplate/pages/iam/auth/signup.vue",
+    "chunkName": "pages/iam/auth/signup",
+    "_name": "_619af42a"
+  },
+  {
     "name": "lms-system_presets-holiday_lists",
     "path": "/lms/system_presets/holiday_lists",
     "component": "/var/www/html/projects/frontend-boilerplate/pages/lms/system_presets/holiday_lists/index.vue",

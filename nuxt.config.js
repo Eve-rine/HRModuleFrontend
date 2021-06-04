@@ -85,17 +85,19 @@ module.exports = {
 		strategies: {
 		   	local: {
 				token: {
-					property: 'data.token',
+					property: 'payload.token',
 					required: true,
 					type: 'Bearer'
 				},
 				user: {
-					property: 'data',
-					required: true,
+					// property: 'data',
+					// required: true,
+					property: false,
+					autoFetch: true
 				},
 				endpoints: {
-			  		login: { url: '/login', method: 'post'},
-					user: { url: '/me', method: 'get', propertyName: false  },
+			  		login: { headers: { 'x-service': 'iam-svc'} , url: 'api/login', method: 'post'},
+					user: { headers: { 'x-service': 'iam-svc'} ,url: 'api/me', method: 'get', propertyName: false  },
 					logout: false,
 				},
 				autoFetchUser: false,
