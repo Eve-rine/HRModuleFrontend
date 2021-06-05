@@ -7,9 +7,14 @@
 				</h1>
 			</div>
 			<div class="sc-actions uk-margin-right uk-margin-small-top">
-				<a href="javascript:void(0)" class="sc-fab sc-fab-small sc-fab-text sc-fab-primary" data-uk-toggle="target:  #modal-gender">
+				<BaseButton
+					:button-group="payload"
+					:trigger-click="triggerClick"
+				>
+				</BaseButton>
+				<!-- <a href="javascript:void(0)" class="sc-fab sc-fab-small sc-fab-text sc-fab-primary" data-uk-toggle="target:  #modal-gender">
 					<i class="mdi mdi-plus"></i>Add Gender
-				</a>
+				</a> -->
 			</div>
 		</div>
 		<div id="sc-page-content">
@@ -135,11 +140,13 @@ import Swal from 'sweetalert2'
 locale.use(lang)
 import  GenderForm from "~/components/serviceComponents/ems/gender-form";
 import Pagination from "~/components/pagination";
-import {createButton} from "../../../plugins/helpers";
+// import {createButton} from "../../../plugins/helpers";
+import BaseButton from "~/components/BaseButton";
 export default {
 	components: {
 		GenderForm,
-		Pagination
+		Pagination,
+		BaseButton
 	},
 	layout: 'employee',
 	data: () => ({
@@ -152,7 +159,10 @@ export default {
 		gender_details:{
 			gender:'',
 			gender_id:''	
-		}
+		},
+		payload: [
+			{"text":"Add Gender", "primary":true, "action":"action2", "icon":true, "iconName":"mdi mdi-plus"},
+		],
 	}),
 	head () {
 		return {
@@ -164,7 +174,7 @@ export default {
 
 	mounted () {
 		this.getGenders()
-		createButton("upddfcgvhbjncgfvhbjnkghjk", this.displayAlert, "black")
+		// createButton("Edit Record", this.displayAlert, "red")
 	},
 	methods: {
 		async getGenders (page) {
@@ -180,15 +190,13 @@ export default {
 					if(response.data.pageCount>1){
 						this.showPagination=true
 					}
-					createButton("upddfcgvhbjncgfvhbjnkghjk", this.displayAlert, "black")
-					createButton("upddfcgvhbjncgfvhbjnkghjk", this.displayAlert, "black")
 					// <i class="mdi mdi-checkbox-marked-outline"></i>
 				})
 				.catch(error => {
 				})
 		},
 		displayAlert (){
-			alert('you clicked me')
+			alert('OKAY')
 		},
 		async addGender () {
 			let formData = new FormData();
@@ -215,6 +223,9 @@ export default {
 			}
 				
 		},
+		async triggerClick () {
+			UIkit.modal('#modal-gender').show()
+		},	
 		async clearForm () {
 			UIkit.modal('#modal-gender').hide()
 			UIkit.modal('#modal-view').hide()

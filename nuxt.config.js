@@ -1,6 +1,6 @@
 /* options */
 
-const mode = 'spa'; // universal/spa
+const mode = 'universal'; // universal/spa
 const serveFromSubFolder = false;
 
 /* options end */
@@ -115,10 +115,9 @@ module.exports = {
 	  },
 	router: {
 		middleware: [
-			'redirect',
+			// 'redirect',
 			// 'auth',
 			'clearValidationErrors',
-			// 'clearToastMessages'
 		],
 		base: process.env.NODE_ENV !== 'production' || !serveFromSubFolder ? '/' : '/' + dist
 	},
@@ -155,8 +154,8 @@ module.exports = {
 	
 	proxy: {
 		'/api/': {
-			// target: "http://leave.co.ke",
-			target: "http://gateway.supasol.tk",
+			target: "http://leave.co.ke",
+			// target: "http://gateway.supasol.tk",
 			// target:"http://ems.console.supasol.tk/svc",
 			pathRewrite: {
 				'^/api/' : '/'

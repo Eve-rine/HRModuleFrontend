@@ -15,11 +15,11 @@ export default function ({$axios, store}){
 	// 	}
 	// 	return response;
 	// });
-    $axios.interceptors.response.use(
-        response =>{
-            if (response.status == 201) {
-                store.dispatch('modules/notificationModule/setToast', response.data.toast);
-                return response;
-            }
-        })
+	$axios.interceptors.response.use(
+		response =>{
+			if (response.status == 201) {
+				store.dispatch('modules/notificationModule/setToast', response.data.toast);
+				return response;
+			}
+		})
 }

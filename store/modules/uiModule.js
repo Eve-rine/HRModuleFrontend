@@ -1,6 +1,6 @@
 import { version } from '~~/package.json';
 
-const state = {
+export const state = () => ({
 	vxAppVersion: version,
 	vxSidebarMainExpanded: true,
 	vxSidebarMainAccordionMode: false,
@@ -19,7 +19,7 @@ const state = {
 	vxPageScrollbars: true,
 	vxFullWidthActive: false,
 	vxPageOverlay: false
-};
+});
 
 const mutations = {
 	sidebarMainToggle (state, expanded) {

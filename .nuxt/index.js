@@ -63,7 +63,7 @@ Object.defineProperty(Vue.prototype, '$nuxt', {
 
 Vue.use(Meta, {"keyName":"head","attribute":"data-n-head","ssrAttribute":"data-n-head-ssr","tagIDKeyName":"hid"})
 
-const defaultTransition = {"name":"page","mode":"out-in","appear":true,"appearClass":"appear","appearActiveClass":"appear-active","appearToClass":"appear-to"}
+const defaultTransition = {"name":"page","mode":"out-in","appear":false,"appearClass":"appear","appearActiveClass":"appear-active","appearToClass":"appear-to"}
 
 const originalRegisterModule = Vuex.Store.prototype.registerModule
 
@@ -83,12 +83,15 @@ async function createApp(ssrContext, config = {}) {
   // Add this.$router into store actions/mutations
   store.$router = router
 
+  // Fix SSR caveat https://github.com/nuxt/nuxt.js/issues/3757#issuecomment-414689141
+  store.registerModule = registerModule
+
   // Create Root instance
 
   // here we inject the router and store to all child components,
   // making them available everywhere as `this.$router` and `this.$store`.
   const app = {
-    head: {"htmlAttrs":{"lang":"en"},"title":"DukaPal","meta":[{"charset":"utf-8"},{"name":"viewport","content":"width=device-width, initial-scale=1"},{"hid":"description","name":"description","content":"Scutum Admin Template (Vue.js version)"}],"script":[{"src":"\u002Fvendor\u002Fuikit.min.js"}],"link":[{"rel":"icon","type":"image\u002Fx-icon","href":"\u002Ffavicon.ico"},{"rel":"preload","href":"\u002Fvendor\u002Fuikit.min.js","as":"script"},{"rel":"preload","href":"\u002Ffonts\u002Froboto_base64.css","as":"style"},{"rel":"preload","href":"\u002Ffonts\u002FsourceCodePro_base64.css","as":"style"},{"rel":"preload","href":"\u002Ffonts\u002Fmdi\u002Fcss\u002Fmaterialdesignicons.css","as":"style"},{"rel":"stylesheet","href":"\u002Ffonts\u002Froboto_base64.css"},{"rel":"stylesheet","href":"\u002Ffonts\u002FsourceCodePro_base64.css"},{"rel":"stylesheet","href":"\u002Ffonts\u002Fmdi\u002Fcss\u002Fmaterialdesignicons.css"}],"style":[]},
+    head: {"htmlAttrs":{"lang":"en"},"title":"DukaPal","meta":[{"charset":"utf-8"},{"name":"viewport","content":"width=device-width, initial-scale=1"},{"hid":"description","name":"description","content":"Scutum Admin Template (Vue.js version)"},{"hid":"charset","charset":"utf-8"},{"hid":"mobile-web-app-capable","name":"mobile-web-app-capable","content":"yes"},{"hid":"apple-mobile-web-app-title","name":"apple-mobile-web-app-title","content":"scutum_admin_vuejs"},{"hid":"og:type","name":"og:type","property":"og:type","content":"website"},{"hid":"og:title","name":"og:title","property":"og:title","content":"scutum_admin_vuejs"},{"hid":"og:site_name","name":"og:site_name","property":"og:site_name","content":"scutum_admin_vuejs"}],"script":[{"src":"\u002Fvendor\u002Fuikit.min.js"}],"link":[{"rel":"icon","type":"image\u002Fx-icon","href":"\u002Ffavicon.ico"},{"rel":"preload","href":"\u002Fvendor\u002Fuikit.min.js","as":"script"},{"rel":"preload","href":"\u002Ffonts\u002Froboto_base64.css","as":"style"},{"rel":"preload","href":"\u002Ffonts\u002FsourceCodePro_base64.css","as":"style"},{"rel":"preload","href":"\u002Ffonts\u002Fmdi\u002Fcss\u002Fmaterialdesignicons.css","as":"style"},{"rel":"stylesheet","href":"\u002Ffonts\u002Froboto_base64.css"},{"rel":"stylesheet","href":"\u002Ffonts\u002FsourceCodePro_base64.css"},{"rel":"stylesheet","href":"\u002Ffonts\u002Fmdi\u002Fcss\u002Fmaterialdesignicons.css"},{"hid":"shortcut-icon","rel":"shortcut icon","href":"\u002Ffavicon.ico"},{"rel":"manifest","href":"\u002F_nuxt\u002Fmanifest.712c9e16.json","hid":"manifest"}],"style":[]},
 
     store,
     router,

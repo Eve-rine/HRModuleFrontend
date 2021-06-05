@@ -40,7 +40,8 @@ export default {
 		},
 		submitForm: {
 			type: Function,
-			required: false
+			required: false,
+			default:null
 		},
 		getRecord: {
 			type: Function,
@@ -53,7 +54,8 @@ export default {
 		},
 		genderDetails:{
 			type:Object,
-			required:false
+			required:false,
+			default:null
 		}
 
 	},

@@ -21,7 +21,7 @@
 						<div class="uk-navbar-dropdown uk-dropdown-small">
 							<ul class="uk-nav uk-nav-navbar">
 								<li>
-									<nuxt-link to="/pages/user_profile">
+									<nuxt-link to="/iam/auth/profile">
 										Profile
 									</nuxt-link>
 								</li>
