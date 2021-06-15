@@ -14,6 +14,13 @@
     "_name": "_3ea21858"
   },
   {
+    "name": "indexc",
+    "path": "/indexc",
+    "component": "/var/www/html/projects/frontend-boilerplate/pages/indexc.vue",
+    "chunkName": "pages/indexc",
+    "_name": "_2b17c60a"
+  },
+  {
     "name": "lms",
     "path": "/lms",
     "component": "/var/www/html/projects/frontend-boilerplate/pages/lms/index.vue",

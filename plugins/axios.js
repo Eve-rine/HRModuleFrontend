@@ -8,18 +8,13 @@ export default function ({$axios, store}){
 	$axios.onRequest(()=>{
 		store.dispatch('modules/validationModule/clearErrors');
 	});
-	// $axios.onResponse(response => {
-	// 	if(response.status === 201){
-	// 		store.dispatch('modules/notificationModule/setToast', response.data.toast);
-	// 		console.log('Oh no it returned a 404')
-	// 	}
-	// 	return response;
-	// });
-	$axios.interceptors.response.use(
-		response =>{
-			if (response.status == 201) {
-				store.dispatch('modules/notificationModule/setToast', response.data.toast);
-				return response;
-			}
-		})
+	// Add a response interceptor
+	$axios.interceptors.response.use(function (response) {
+		if (response.status == 201) {
+			store.dispatch('modules/notificationModule/setToast', response.data.toast);
+		}
+		return response;
+	}, function (error) {
+		return Promise.reject(error);
+	});
 }

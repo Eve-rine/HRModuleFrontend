@@ -7,10 +7,7 @@
 				</h1>
 			</div>
 			<div class="sc-actions uk-margin-right uk-margin-small-top">
-				<BaseButton
-					:button-group="payload"
-					:trigger-click="triggerClick"
-				>
+				<BaseButton>
 				</BaseButton>
 				<!-- <a href="javascript:void(0)" class="sc-fab sc-fab-small sc-fab-text sc-fab-primary" data-uk-toggle="target:  #modal-gender">
 					<i class="mdi mdi-plus"></i>Add Gender
@@ -51,7 +48,13 @@
 						<el-table-column prop="gender" label="Gender" sortable="custom">
 						</el-table-column>
 						<el-table-column label="Action">
-							<template slot-scope="scope">
+							<!-- <template slot-scope="scope"> -->
+							<BaseButton	
+								:button-group="tablesButtons"
+							>
+								<!-- :trigger-click="TableFunctions(scope.row.gender_id)" -->
+								<!-- </BaseButton> -->
+								<!-- <template slot-scope="scope">
 								<el-button-group>
 									<el-button type="success"
 										class="elbutton"
@@ -68,7 +71,9 @@
 										<i class="el-icon-view" />
 									</el-button>
 								</el-button-group>
-							</template>
+							</template> -->
+							</basebutton>
+							<!-- </template> -->
 						</el-table-column>
 					</el-table>
 					<Pagination v-if="showPagination"
@@ -130,6 +135,8 @@
 </template>
 
 <script>
+import 'vue-good-table/dist/vue-good-table.css'
+import { VueGoodTable } from 'vue-good-table'
 import Vue from 'vue';
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
@@ -145,8 +152,9 @@ import BaseButton from "~/components/BaseButton";
 export default {
 	components: {
 		GenderForm,
-		Pagination,
-		BaseButton
+		// Pagination,
+		BaseButton,
+		// VueGoodTable,
 	},
 	layout: 'employee',
 	data: () => ({
@@ -163,6 +171,21 @@ export default {
 		payload: [
 			{"text":"Add Gender", "primary":true, "action":"action2", "icon":true, "iconName":"mdi mdi-plus"},
 		],
+		tablesButtons: 			[
+			{"size":"mini", "theme":"success",
+			  "action":"action1", 
+			 "captionType":{'Icon':{"icon":"mdi  mdi-pen"}}
+			 },
+			 {"size":"mini", "theme":"danger",
+			  "action":"delete", 
+			 "captionType":{'Icon':{"icon":"mdi mdi mdi-trash-can-outline"}}
+			 },
+			{"size":"mini", "theme":"warning",
+			  "action":"view", 
+			 "captionType":{'Icon':{"icon":"mdi mdi mdi-eye"}}
+			 }
+			 ]	 
+
 	}),
 	head () {
 		return {
@@ -170,6 +193,22 @@ export default {
 		}
 	},
 	computed: {
+		columns () {
+			return [
+				{
+					label: '#',
+					field: 'genderId',
+				},
+				{
+					label: 'Gender',
+					field: 'gender',
+				},
+				{
+					label: 'Action',
+					field: 'action',
+				},
+			]
+		},
 	},
 
 	mounted () {
@@ -182,7 +221,7 @@ export default {
 			const headers = {'x-service': 'ems-svc'};
 			await this.$axios.get(`api/gender?page=${page}&per-page=${this.perPage}`, { headers })
 				.then(response =>{
-					this.genders = response.data.data	
+					this.genders = response.data.payload
 					this.totalRecords=response.data.totalCount
 					this.pages=response.data.pageCount
 					this.currentPage=1
@@ -223,6 +262,43 @@ export default {
 			}
 				
 		},
+		TableEditView (methodsNums, evt){
+			//Method to trigger this parameter
+			this[methodsNums]
+		},
+		action1 (){
+			alert('Update 1');
+		},
+		delete (){
+			alert('Update 2');
+		},
+		 TableFunctions (action, id) {
+			if (action === "edit") {
+				// UIkit.modal('#modal-gender').show()
+				// this.editRecord()
+			
+				const headers = {'x-service': 'ems-svc'};
+				try {
+					this.$axios.get(
+						`api/gender/${id}`, { headers }
+					)
+						.then(response =>{
+							UIkit.modal('#modal-view').show()
+							this.gender_details.gender=response.data.payload.gender	
+						})
+						.catch(error => {
+
+						})
+				} catch (error) {
+				}
+			} else if (action === "action2") {
+				alert("Action2")
+			}else if (action === "action3") {
+				alert("Action3")
+			}else if (action === "action4") {
+				alert("Primary button")
+			}
+		},
 		async triggerClick () {
 			UIkit.modal('#modal-gender').show()
 		},	
@@ -237,13 +313,37 @@ export default {
 			const headers = {'x-service': 'ems-svc'};
 			await this.$axios.get(`api/gender?qpsearch=${this.searchTerm}`, { headers })
 				.then(response =>{
-					this.genders = response.data.data
-				})
+					this.genders = response.data.payload				})
 				.catch(error => {
 				})
 		},
+		handleClick (methodsNums, evt){
+			//Method to trigger this parameter
+			this.$emit('click', evt);
+			this[methodsNums]()
+			
+		},
+		async	TableFuncs (methodsNums, id){
+			if(id == 0)
+			{
+				const headers = {'x-service': 'ems-svc'};
+				try {
+					await this.$axios.get(
+						`api/gender/${id}`, { headers }
+					)
+						.then(response =>{
+							UIkit.modal('#modal-view').show()
+							this.gender_details.gender=response.data.payload.gender	
+						})
+						.catch(error => {
 
-		async editRecord () {
+						})
+				} catch (error) {
+				}	
+			}
+			
+		},
+		async editRecord (id) {
 			let formData = new FormData();
 			formData.append('gender', this.gender_details.gender);
 			try {
@@ -256,7 +356,7 @@ export default {
 					},
 				)
 					.then(response =>{
-						this.gender_details.gender=response.data.data.gender	
+						this.gender_details.gender=response.data.payload.gender	
 					})
 					.catch(error => {
 						return
@@ -264,8 +364,6 @@ export default {
 			} catch (err) {
 			}
 		},
-		
-
 		async viewRecord (id) {
 			const headers = {'x-service': 'ems-svc'};
 			try {
@@ -274,7 +372,7 @@ export default {
 				)
 					.then(response =>{
 						UIkit.modal('#modal-view').show()
-						this.gender_details.gender=response.data.data.gender	
+						this.gender_details.gender=response.data.payload.gender	
 					})
 					.catch(error => {
 
@@ -331,4 +429,6 @@ export default {
 	}
 }
 </script>
-
+<style lang="scss">
+  @import '~scss/plugins/vue-good-table.scss';
+</style>

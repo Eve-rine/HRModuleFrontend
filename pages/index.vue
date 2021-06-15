@@ -2,45 +2,52 @@
 	<div id="sc-page-wrapper">
 		<div id="sc-page-content">
 			<div>
-				<BaseButton
-					:button-group="payload"
-					:trigger-click="triggerClick"
+				<UiButton 
+					modal-id="modal-gender"
+					uk-tooltip="{title: default button}"
+					size="mini"							
+					theme="primary"		
+					type="link"			
+					url="http://www.google.com"
+					caption="iconText"
+					text="default text"
+					icon="mdi mdi-chart-areaspline"
+					button-width="1-6"
+					@click="gotosite"
 				>
-				</BaseButton>
+					<!-- :disabled="clickable === false?false:false" -->
+				</UiButton>
+				<div id="modal-gender" class="uk-flex-middle" uk-modal="bg-close:false" container="false">
+					<div class="uk-modal-dialog uk-width-1-4@l uk-margin-auto uk-modal-body">
+						<button class="uk-modal-close-default" data-uk-close></button>
+						<h2 class="uk-modal-title">
+							Modal Heading
+						</h2>
+						<client-only>
+							<h6>Default Modal Content</h6>
+						</client-only>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
 </template>
 
 <script>
-import BaseButton from "~/components/BaseButton";
+import UiButton from "~/components/UiButton";
 
 export default {
 	components: {
-		BaseButton
+		UiButton
 	},
-	data () {
-		return {
-			payload: [
-				{"text":"success", "success":true, "action":"action2", "icon":true, "iconName":"mdi mdi-check"},
-				{"text":"danger", "danger":true, "action":"displayAlert"},
-				{"text":"warning", "warning":true, "action":"action3", "icon":true, "iconName":"mdi mdi-close"},
-				{"text":"primary", "primary":true, "action":"action5"},
-				{"text":"primary", "action":"action5", "disabled":true},
-			],
-		};
-	},
+	data: () => ({
+		clickable:false,
+		google:"http://www.google.com",
+		permission:0
+	}),
 	methods:{
-	 triggerClick (action) {
-			if (action === "displayAlert") {
-				alert("Action1")
-			} else if (action === "action2") {
-				alert("Action2")
-			}else if (action === "action3") {
-				alert("Action3")
-			}else if (action === "action4") {
-				alert("Primary button")
-			}
+		gotosite (site){
+			window.location=site
 		}
 	}
 };

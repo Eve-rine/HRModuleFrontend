@@ -206,7 +206,7 @@ export default {
 			var nam2=name2
 			var whitespace=""
 			// return nam1.concat(whitespace, nam2)
-			return nam1+""+nam2
+			return nam1+" "+nam2
 		},
 	}
 }

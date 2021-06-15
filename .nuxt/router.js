@@ -6,6 +6,7 @@ import scrollBehavior from './router.scrollBehavior.js'
 
 const _2b57f3dd = () => interopDefault(import('../pages/dashboard/index.vue' /* webpackChunkName: "pages/dashboard/index" */))
 const _3ea21858 = () => interopDefault(import('../pages/ems/index.vue' /* webpackChunkName: "pages/ems/index" */))
+const _2b17c60a = () => interopDefault(import('../pages/indexc.vue' /* webpackChunkName: "pages/indexc" */))
 const _6644215b = () => interopDefault(import('../pages/lms/index.vue' /* webpackChunkName: "pages/lms/index" */))
 const _704c3200 = () => interopDefault(import('../pages/dashboard/v1.vue' /* webpackChunkName: "pages/dashboard/v1" */))
 const _5ce3d16a = () => interopDefault(import('../pages/ems/create.vue' /* webpackChunkName: "pages/ems/create" */))
@@ -61,6 +62,10 @@ export const routerOptions = {
     path: "/ems",
     component: _3ea21858,
     name: "ems"
+  }, {
+    path: "/indexc",
+    component: _2b17c60a,
+    name: "indexc"
   }, {
     path: "/lms",
     component: _6644215b,

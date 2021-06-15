@@ -92,15 +92,15 @@ module.exports = {
 				user: {
 					// property: 'data',
 					// required: true,
-					property: false,
+					property: 'user',
 					autoFetch: true
 				},
 				endpoints: {
 			  		login: { headers: { 'x-service': 'iam-svc'} , url: 'api/login', method: 'post'},
-					user: { headers: { 'x-service': 'iam-svc'} ,url: 'api/me', method: 'get', propertyName: false  },
+					user: { headers: { 'x-service': 'iam-svc'} ,url: 'api/me', method: 'get',propertyName:false},
 					logout: false,
 				},
-				autoFetchUser: false,
+				// autoFetchUser: false,
 		  },
 		},
 		redirect: {
@@ -154,8 +154,8 @@ module.exports = {
 	
 	proxy: {
 		'/api/': {
-			target: "http://leave.co.ke",
-			// target: "http://gateway.supasol.tk",
+			// target: "http://leave.co.ke",
+			target: "http://gateway.supasol.tk",
 			// target:"http://ems.console.supasol.tk/svc",
 			pathRewrite: {
 				'^/api/' : '/'

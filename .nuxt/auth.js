@@ -49,7 +49,7 @@ export default function (ctx, inject) {
     "type": "Bearer"
   },
   "user": {
-    "property": false,
+    "property": "user",
     "autoFetch": true
   },
   "endpoints": {
@@ -70,7 +70,6 @@ export default function (ctx, inject) {
     },
     "logout": false
   },
-  "autoFetchUser": false,
   "name": "local"
 }))
 

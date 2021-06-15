@@ -56,8 +56,8 @@
 							<el-table-column prop="nationality" label="nationality" sortable="custom">
 							</el-table-column>
 							<el-table-column label="Action">
-								<template slot-scope="scope">
-									<el-button-group>
+								<!-- <template slot-scope="scope"> -->
+								<!-- <el-button-group>
 										<nuxt-link :to="'/ems/view/'+ scope.row.employee_id">
 											<el-button type="success"
 												class="elbutton"
@@ -74,8 +74,13 @@
 										<el-button type="primary" size="mini" uk-tooltip="View" @click="handleSaveRow(scope.$index)">
 											<i class="el-icon-view" />
 										</el-button>
-									</el-button-group>
-								</template>
+									</el-button-group> -->
+								<BaseButton
+									:button-group="payload"
+									:trigger-click="triggerClick"
+								>
+								</BaseButton>
+								<!-- </template> -->
 							</el-table-column>
 						</el-table>
 					</div>
@@ -108,14 +113,26 @@ import lang from 'element-ui/lib/locale/lang/en'
 import locale from 'element-ui/lib/locale'
 locale.use(lang)
 import  CountriesForm from "~/components/serviceComponents/ems/countries-form";
+import BaseButton from "~/components/BaseButton";
 export default {
 	components: {
-		CountriesForm
+		CountriesForm,
+		BaseButton
 	},
 	layout: 'employee',
 	data: () => ({
 		countries:[],
-		searchTerm:''	
+		searchTerm:'',
+		payload: 			[
+			{"size":"mini", "theme":"success",
+			  "action":"action", 
+			 "captionType":{'Icon':{"icon":"mdi  mdi-square-edit-outline"}}
+			 },
+			 {"size":"mini", "theme":"danger",
+			  "action":"action", 
+			 "captionType":{'Icon':{"icon":"mdi  mdi-square-edit-outline"}}
+			 }
+			 ]	 
 	}),
 	head () {
 		return {
@@ -129,6 +146,17 @@ export default {
 		this.getCountries()
 	},
 	methods: {
+			 triggerClick (action) {
+			if (action === "displayAlert") {
+				alert("Action1")
+			} else if (action === "action2") {
+				alert("Action2")
+			}else if (action === "action3") {
+				alert("Action3")
+			}else if (action === "action4") {
+				alert("Primary button")
+			}
+		},
 		async addCountries (country_details) {
 			let formData = new FormData();
 			formData.append('country_code', country_details.country_code);
@@ -143,8 +171,8 @@ export default {
 						},
 					},
 				).then(response=>{
-					this.$router.push('/lms')							
-			
+				
+
 				}) .catch(function (response) {
 
 				})
@@ -157,7 +185,8 @@ export default {
 			const headers = {'x-service': 'ems-svc'};
 			await this.$axios.get(`api/countries`, { headers })
 				.then(response =>{
-					this.countries = response.data.data
+					this.countries = response.data.payload
+					// alert(this.payload.length)
 				})
 				.catch(error => {
 				})
@@ -166,7 +195,7 @@ export default {
 			const headers = {'x-service': 'ems-svc'};
 			await this.$axios.get(`api/countries?qpsearch=${this.searchTerm}`, { headers })
 				.then(response =>{
-					this.countries = response.data.data
+					this.countries = response.data.payload
 				})
 				.catch(error => {
 				})
